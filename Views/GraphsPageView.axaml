@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="using:KursMVVM.ViewModels"
+             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             x:Class="KursMVVM.Views.GraphsPageView">
+  <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" Margin="10">
+    <Border Grid.Row="0" Grid.Column="0" Margin="6" Background="White" BorderBrush="#D2B48C" BorderThickness="1" CornerRadius="8" Padding="10">
+      <Grid RowDefinitions="Auto,*">
+        <TextBlock Text="Договоры по сотрудникам" FontWeight="Bold" Foreground="#5C4033" Margin="0,0,0,8" HorizontalAlignment="Center"/>
+        <lvc:CartesianChart Grid.Row="1" Series="{Binding ContractsByEmployeeSeries}" XAxes="{Binding ContractsByEmployeeXAxes}" Background="White"/>
+      </Grid>
+    </Border>
+
+    <Border Grid.Row="0" Grid.Column="1" Margin="6" Background="White" BorderBrush="#D2B48C" BorderThickness="1" CornerRadius="8" Padding="10">
+      <Grid RowDefinitions="Auto,*">
+        <TextBlock Text="Доля поставок по типам" FontWeight="Bold" Foreground="#5C4033" Margin="0,0,0,8" HorizontalAlignment="Center"/>
+        <lvc:PieChart Grid.Row="1" Series="{Binding EquipmentTypeSeries}" Background="White"/>
+      </Grid>
+    </Border>
+
+    <Border Grid.Row="1" Grid.Column="0" Margin="6" Background="White" BorderBrush="#D2B48C" BorderThickness="1" CornerRadius="8" Padding="10">
+      <Grid RowDefinitions="Auto,*">
+        <TextBlock Text="Динамика договоров по месяцам" FontWeight="Bold" Foreground="#5C4033" Margin="0,0,0,8" HorizontalAlignment="Center"/>
+        <lvc:CartesianChart Grid.Row="1" Series="{Binding ContractDynamicsSeries}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" Background="White"/>
+      </Grid>
+    </Border>
+
+    <Border Grid.Row="1" Grid.Column="1" Margin="6" Background="White" BorderBrush="#D2B48C" BorderThickness="1" CornerRadius="8" Padding="10">
+      <Grid RowDefinitions="Auto,*">
+        <TextBlock Text="Распределение окладов" FontWeight="Bold" Foreground="#5C4033" Margin="0,0,0,8" HorizontalAlignment="Center"/>
+        <lvc:CartesianChart Grid.Row="1" Series="{Binding SalaryDistributionSeries}" Background="White"/>
+      </Grid>
+    </Border>
+  </Grid>
+</UserControl>

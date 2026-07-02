@@ -1,0 +1,103 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:KursMVVM.ViewModels"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             x:Class="KursMVVM.Views.ReportsPageView">
+	<Grid RowDefinitions="Auto,*">
+		<StackPanel Orientation="Horizontal" Margin="10" >
+			<Button Content="🔄 Обновить" Margin="0,0,12,0" Command="{Binding RefreshCommand}" Background="#8FBC8F" Foreground="White" Padding="12,6" FontWeight="Bold" CornerRadius="5"/>
+		</StackPanel>
+
+		<TabControl Grid.Row="1" Margin="10" SelectedIndex="{Binding SelectedTabIndex}">
+			<TabItem Header="Сотрудники" Background="#E8DCC8">
+				<Border Background="White" BorderBrush="#D2B48C" BorderThickness="1">
+					<ListBox ItemsSource="{Binding EmployeeReports}" Background="White">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Grid ColumnDefinitions="2*,2*,120,120,100,120">
+									<TextBlock Text="{Binding FullName}" Grid.Column="0" VerticalAlignment="Center"/>
+									<TextBlock Text="{Binding Position}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding Salary}" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding Bonus}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding TotalContracts}" Grid.Column="4" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding TotalAmount}" Grid.Column="5" VerticalAlignment="Center" Margin="5,0"/>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</Border>
+			</TabItem>
+
+			<TabItem Header="Поставки" Background="#E8DCC8">
+				<Border Background="White" BorderBrush="#D2B48C" BorderThickness="1">
+					<ListBox ItemsSource="{Binding SupplyReports}" Background="White">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Grid ColumnDefinitions="3*,150,150">
+									<TextBlock Text="{Binding EquipmentType}" Grid.Column="0" VerticalAlignment="Center"/>
+									<TextBlock Text="{Binding ContractCount}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding OrgCount}" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</Border>
+			</TabItem>
+
+			<TabItem Header="Договоры" Background="#E8DCC8">
+				<Border Background="White" BorderBrush="#D2B48C" BorderThickness="1">
+					<ListBox ItemsSource="{Binding ContractReports}" Background="White">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Grid ColumnDefinitions="100,2*,120,2*,2*,3*">
+									<TextBlock Text="{Binding ContractNumber}" Grid.Column="0" VerticalAlignment="Center"/>
+									<TextBlock Text="{Binding OrganizationName}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding Date, StringFormat={}{0:yyyy-MM-dd}}" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding EmployeeName}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding EquipmentType}" Grid.Column="4" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding Comment}" Grid.Column="5" VerticalAlignment="Center" Margin="5,0"/>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</Border>
+			</TabItem>
+
+			<TabItem Header="Неактивные" Background="#E8DCC8">
+				<Border Background="White" BorderBrush="#D2B48C" BorderThickness="1">
+					<ListBox ItemsSource="{Binding InactiveEmployees}" Background="White">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Grid ColumnDefinitions="80,2*,2*,100">
+									<TextBlock Text="{Binding Id}" Grid.Column="0" VerticalAlignment="Center"/>
+									<TextBlock Text="{Binding FullName}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding Position}" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding DepartmentCode}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0"/>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</Border>
+			</TabItem>
+
+			<TabItem Header="География" Background="#E8DCC8">
+				<Border Background="White" BorderBrush="#D2B48C" BorderThickness="1">
+					<ListBox ItemsSource="{Binding GeoReports}" Background="White">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Grid ColumnDefinitions="100,2*,120,120">
+									<TextBlock Text="{Binding Country}" Grid.Column="0" VerticalAlignment="Center"/>
+									<TextBlock Text="{Binding City}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding ContractCount}" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
+									<TextBlock Text="{Binding OrgCount}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0"/>
+								</Grid>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</Border>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</UserControl>

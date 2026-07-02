@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="using:KursMVVM.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             x:Class="KursMVVM.Views.ImportExportPageView">
+  <Grid RowDefinitions="Auto,*,Auto">
+    <Border Grid.Row="0" Background="#E8DCC8" Padding="15" BorderBrush="#D2B48C" BorderThickness="0,0,0,2">
+      <StackPanel Spacing="10">
+        <TextBlock Text="📥 Импорт" FontSize="18" FontWeight="Bold" Foreground="#5C4033"/>
+        <WrapPanel>
+          <Button Content="📄 CSV" Margin="0,0,10,0" Command="{Binding ImportCsvCommand}" Background="#8FBC8F" Foreground="White" Padding="15,6" FontWeight="Bold" CornerRadius="5"/>
+          <Button Content="📄 JSON" Margin="0,0,10,0" Command="{Binding ImportJsonCommand}" Background="#8FBC8F" Foreground="White" Padding="15,6" FontWeight="Bold" CornerRadius="5"/>
+          <Button Content="📄 XML" Margin="0,0,10,0" Command="{Binding ImportXmlCommand}" Background="#8FBC8F" Foreground="White" Padding="15,6" FontWeight="Bold" CornerRadius="5"/>
+          <Button Content="📄 Excel" Command="{Binding ImportExcelCommand}" Background="#8FBC8F" Foreground="White" Padding="15,6" FontWeight="Bold" CornerRadius="5"/>
+        </WrapPanel>
+        <TextBlock Text="📤 Экспорт" FontSize="18" FontWeight="Bold" Foreground="#5C4033" Margin="0,10,0,0"/>
+        <WrapPanel>
+          <Button Content="📄 CSV" Margin="0,0,10,0" Command="{Binding ExportCsvCommand}" Background="#87CEEB" Foreground="White" Padding="15,6" FontWeight="Bold" CornerRadius="5"/>
+          <Button Content="📄 Excel" Margin="0,0,10,0" Command="{Binding ExportExcelCommand}" Background="#87CEEB" Foreground="White" Padding="15,6" FontWeight="Bold" CornerRadius="5"/>
+          <Button Content="📄 PDF" Command="{Binding ExportPdfCommand}" Background="#87CEEB" Foreground="White" Padding="15,6" FontWeight="Bold" CornerRadius="5"/>
+        </WrapPanel>
+      </StackPanel>
+    </Border>
+
+    <Border Grid.Row="1" Background="White" BorderBrush="#D2B48C" BorderThickness="1" CornerRadius="6" Margin="10">
+      <Grid RowDefinitions="Auto,*">
+        <TextBlock Text="Лог операций:" FontWeight="Bold" Foreground="#5C4033" Margin="10,8,10,4"/>
+        <ListBox Grid.Row="1" ItemsSource="{Binding LogMessages}" Background="#FFF8F0" Margin="10" BorderBrush="#D2B48C" BorderThickness="1"/>
+      </Grid>
+    </Border>
+
+    <Border Grid.Row="2" Background="#E8DCC8" Padding="10" BorderBrush="#D2B48C" BorderThickness="0,2,0,0">
+      <StackPanel Orientation="Horizontal" Spacing="15">
+        <TextBlock Text="Статус:" Foreground="#5C4033" FontWeight="Bold" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding StatusText}" Foreground="#8B4513" VerticalAlignment="Center"/>
+        <Button Content="🗑️ Очистить лог" Command="{Binding ClearLogCommand}" Background="#CD5C5C" Foreground="White" Padding="12,4" CornerRadius="4" HorizontalAlignment="Right"/>
+      </StackPanel>
+    </Border>
+  </Grid>
+</UserControl>

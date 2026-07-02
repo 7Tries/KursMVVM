@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KursMVVM.ViewModels"
+        xmlns:local="using:KursMVVM"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+        x:Class="KursMVVM.Views.MainWindow"
+        Title="{Binding Title}"
+        Width="1200" Height="800"
+        Background="#FAF0E6">
+
+  <Window.DataTemplates>
+    <local:ViewLocator/>
+  </Window.DataTemplates>
+
+  <DockPanel>
+    <Border DockPanel.Dock="Left" Width="240" Background="#E8DCC8" BorderBrush="#D2B48C" BorderThickness="0,0,2,0">
+      <StackPanel Margin="15">
+        <TextBlock Text="📋 МЕНЮ" FontSize="20" FontWeight="Bold" Foreground="#5C4033" Margin="0,15,0,25" HorizontalAlignment="Center"/>
+
+        <Button Content="👤 Сотрудники" Command="{Binding NavigateCommand}" CommandParameter="Employees"
+                Margin="0,6" Padding="12,10" Background="#D2B48C" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" CornerRadius="6"/>
+        <Button Content="📄 Договоры" Command="{Binding NavigateCommand}" CommandParameter="Contracts"
+                Margin="0,6" Padding="12,10" Background="#D2B48C" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" CornerRadius="6"/>
+        <Button Content="📦 Поставки" Command="{Binding NavigateCommand}" CommandParameter="Supplies"
+                Margin="0,6" Padding="12,10" Background="#D2B48C" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" CornerRadius="6"/>
+        <Button Content="🏢 Организации" Command="{Binding NavigateCommand}" CommandParameter="Organizations"
+                Margin="0,6" Padding="12,10" Background="#D2B48C" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" CornerRadius="6"/>
+        <Button Content="📊 Отчёты" Command="{Binding NavigateCommand}" CommandParameter="Reports"
+                Margin="0,6" Padding="12,10" Background="#D2B48C" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" CornerRadius="6"/>
+        <Button Content="📈 Графики" Command="{Binding NavigateCommand}" CommandParameter="Graphs"
+                Margin="0,6" Padding="12,10" Background="#D2B48C" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" CornerRadius="6"/>
+        <Button Content="📤 Импорт/Экспорт" Command="{Binding NavigateCommand}" CommandParameter="ImportExport"
+                Margin="0,6" Padding="12,10" Background="#D2B48C" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" CornerRadius="6"/>
+        <Button Content="ℹ️ О программе" Command="{Binding NavigateCommand}" CommandParameter="About"
+                Margin="0,6" Padding="12,10" Background="#C19A6B" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" CornerRadius="6"/>
+      </StackPanel>
+    </Border>
+
+    <Border Background="#FAF0E6" Padding="25">
+      <ContentControl Content="{Binding CurrentPage}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+    </Border>
+  </DockPanel>
+</Window>

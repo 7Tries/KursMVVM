@@ -1,0 +1,15 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="using:KursMVVM.Converters"
+             x:Class="KursMVVM.App"
+             RequestedThemeVariant="Light">
+  <Application.Resources>
+    <converters:StringToIntConverter x:Key="StringToIntConverter"/>
+    <converters:StringToDecimalConverter x:Key="StringToDecimalConverter"/>
+    <converters:StringToDateTimeConverter x:Key="StringToDateTimeConverter"/>
+    <converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter"/>
+  </Application.Resources>
+  <Application.Styles>
+    <FluentTheme />
+  </Application.Styles>
+</Application>

@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="using:KursMVVM.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             x:Class="KursMVVM.Views.SuppliesPageView">
+	<Grid RowDefinitions="Auto,*">
+		<StackPanel Orientation="Horizontal" Margin="10" Spacing="12">
+			<Button Content="➕ Добавить" Command="{Binding AddCommand}" Background="#8FBC8F" Foreground="White" Padding="12,6" FontWeight="Bold" CornerRadius="5"/>
+			<Button Content="✏️ Изменить" Command="{Binding EditCommand}" Background="#87CEEB" Foreground="White" Padding="12,6" FontWeight="Bold" CornerRadius="5"/>
+			<Button Content="🗑️ Удалить" Command="{Binding DeleteCommand}" Background="#CD5C5C" Foreground="White" Padding="12,6" FontWeight="Bold" CornerRadius="5"/>
+		</StackPanel>
+
+		<Border Grid.Row="1" Margin="10" Background="White" BorderBrush="#D2B48C" BorderThickness="1" CornerRadius="6">
+			<ListBox ItemsSource="{Binding Supplies}" SelectedItem="{Binding SelectedSupply}" Background="White">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Grid ColumnDefinitions="120,2*,3*,2*">
+							<TextBlock Text="{Binding ContractNumber}" Grid.Column="0" VerticalAlignment="Center"/>
+							<TextBlock Text="{Binding EquipmentType}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
+							<TextBlock Text="{Binding Comment}" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
+							<TextBlock Text="{Binding Employee.FullName}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0"/>
+						</Grid>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Border>
+	</Grid>
+</UserControl>
