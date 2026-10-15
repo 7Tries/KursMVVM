@@ -8,15 +8,15 @@
 
   <Grid RowDefinitions="Auto,Auto,*" Margin="0,0,0,10">
     <!-- Top Header -->
-    <Border Grid.Row="0" Margin="0,0,0,16" Padding="16,14" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10">
+    <Border Grid.Row="0" Margin="0,0,0,16" Padding="16,14" Background="#1E1E1E" BorderBrush="#2C2C2C" BorderThickness="1" CornerRadius="8">
       <Grid ColumnDefinitions="*,Auto">
         <StackPanel Grid.Column="0">
-          <TextBlock Text="📤 Модуль обмена данными (Импорт и Экспорт)" FontSize="18" FontWeight="Bold" Foreground="#1E293B"/>
-          <TextBlock Text="Гибкая выгрузка справочников и аналитических отчётов в различные форматы" FontSize="12" Foreground="#64748B"/>
+          <TextBlock Text="Модуль обмена данными (Импорт и Экспорт)" FontSize="18" FontWeight="Bold" Foreground="#F4F4F5"/>
+          <TextBlock Text="Гибкая выгрузка справочников и аналитических отчётов в различные форматы" FontSize="12" Foreground="#71717A"/>
         </StackPanel>
 
-        <Border Grid.Column="1" Background="#ECFDF5" BorderBrush="#A7F3D0" BorderThickness="1" CornerRadius="8" Padding="12,6" VerticalAlignment="Center">
-          <TextBlock Text="{Binding StatusText}" Foreground="#065F46" FontWeight="SemiBold" FontSize="12"/>
+        <Border Grid.Column="1" Background="#142C23" BorderBrush="#166534" BorderThickness="1" CornerRadius="6" Padding="12,6" VerticalAlignment="Center">
+          <TextBlock Text="{Binding StatusText}" Foreground="#4ADE80" FontWeight="Medium" FontSize="12"/>
         </Border>
       </Grid>
     </Border>
@@ -24,92 +24,82 @@
     <!-- Import & Export Control Panels (2 Columns) -->
     <Grid Grid.Row="1" ColumnDefinitions="*,*" Margin="0,0,0,16">
       <!-- Left Panel: IMPORT -->
-      <Border Grid.Column="0" Margin="0,0,8,0" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="18">
+      <Border Grid.Column="0" Margin="0,0,8,0" Background="#1E1E1E" BorderBrush="#2C2C2C" BorderThickness="1" CornerRadius="8" Padding="18">
         <StackPanel Spacing="12">
-          <StackPanel Orientation="Horizontal" Spacing="8">
-            <Border Width="24" Height="24" Background="#ECFDF5" CornerRadius="6">
-              <TextBlock Text="📥" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Border>
-            <TextBlock Text="Импорт данных" FontSize="15" FontWeight="Bold" Foreground="#1E293B" VerticalAlignment="Center"/>
-          </StackPanel>
-          <TextBlock Text="Загрузка информации в базу данных с валидацией обязательных полей и контролем внешних ключей:" FontSize="12" Foreground="#64748B" TextWrapping="Wrap"/>
+          <TextBlock Text="Импорт данных" FontSize="15" FontWeight="Bold" Foreground="#F4F4F5"/>
+          <TextBlock Text="Загрузка информации в базу данных с валидацией обязательных полей и контролем внешних ключей:" FontSize="12" Foreground="#71717A" TextWrapping="Wrap"/>
 
           <WrapPanel Margin="0,6,0,0">
-            <Button Content="📄 CSV файл" Margin="0,0,8,8" Command="{Binding ImportCsvCommand}"
-                    Background="#ECFDF5" Foreground="#065F46" BorderBrush="#A7F3D0" BorderThickness="1"
-                    Padding="14,8" FontWeight="SemiBold" FontSize="12" CornerRadius="6"/>
-            <Button Content="📊 Excel (XLSX)" Margin="0,0,8,8" Command="{Binding ImportExcelCommand}"
-                    Background="#ECFDF5" Foreground="#065F46" BorderBrush="#A7F3D0" BorderThickness="1"
-                    Padding="14,8" FontWeight="SemiBold" FontSize="12" CornerRadius="6"/>
-            <Button Content="📦 JSON файл" Margin="0,0,8,8" Command="{Binding ImportJsonCommand}"
-                    Background="#ECFDF5" Foreground="#065F46" BorderBrush="#A7F3D0" BorderThickness="1"
-                    Padding="14,8" FontWeight="SemiBold" FontSize="12" CornerRadius="6"/>
-            <Button Content="📑 XML файл" Margin="0,0,8,8" Command="{Binding ImportXmlCommand}"
-                    Background="#ECFDF5" Foreground="#065F46" BorderBrush="#A7F3D0" BorderThickness="1"
-                    Padding="14,8" FontWeight="SemiBold" FontSize="12" CornerRadius="6"/>
+            <Button Content="CSV файл" Margin="0,0,8,8" Command="{Binding ImportCsvCommand}"
+                    Background="#262626" Foreground="#E4E4E7" BorderBrush="#3F3F46" BorderThickness="1"
+                    Padding="14,8" FontWeight="Medium" FontSize="12" CornerRadius="6"/>
+            <Button Content="Excel (XLSX)" Margin="0,0,8,8" Command="{Binding ImportExcelCommand}"
+                    Background="#262626" Foreground="#E4E4E7" BorderBrush="#3F3F46" BorderThickness="1"
+                    Padding="14,8" FontWeight="Medium" FontSize="12" CornerRadius="6"/>
+            <Button Content="JSON файл" Margin="0,0,8,8" Command="{Binding ImportJsonCommand}"
+                    Background="#262626" Foreground="#E4E4E7" BorderBrush="#3F3F46" BorderThickness="1"
+                    Padding="14,8" FontWeight="Medium" FontSize="12" CornerRadius="6"/>
+            <Button Content="XML файл" Margin="0,0,8,8" Command="{Binding ImportXmlCommand}"
+                    Background="#262626" Foreground="#E4E4E7" BorderBrush="#3F3F46" BorderThickness="1"
+                    Padding="14,8" FontWeight="Medium" FontSize="12" CornerRadius="6"/>
           </WrapPanel>
         </StackPanel>
       </Border>
 
       <!-- Right Panel: EXPORT WITH CHOICES -->
-      <Border Grid.Column="1" Margin="8,0,0,0" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="18">
+      <Border Grid.Column="1" Margin="8,0,0,0" Background="#1E1E1E" BorderBrush="#2C2C2C" BorderThickness="1" CornerRadius="8" Padding="18">
         <StackPanel Spacing="12">
-          <StackPanel Orientation="Horizontal" Spacing="8">
-            <Border Width="24" Height="24" Background="#EEF2FF" CornerRadius="6">
-              <TextBlock Text="📤" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Border>
-            <TextBlock Text="Настраиваемый экспорт" FontSize="15" FontWeight="Bold" Foreground="#1E293B" VerticalAlignment="Center"/>
-          </StackPanel>
+          <TextBlock Text="Настраиваемый экспорт" FontSize="15" FontWeight="Bold" Foreground="#F4F4F5"/>
 
           <!-- Selectors: What and How -->
           <Grid ColumnDefinitions="*,*" Margin="0,4,0,0">
             <StackPanel Grid.Column="0" Margin="0,0,6,0" Spacing="4">
-              <TextBlock Text="Что экспортируем:" FontSize="12" FontWeight="SemiBold" Foreground="#475569"/>
+              <TextBlock Text="Что экспортируем:" FontSize="12" FontWeight="Medium" Foreground="#A1A1AA"/>
               <ComboBox ItemsSource="{Binding AvailableTargets}" SelectedItem="{Binding SelectedTarget}"
-                        HorizontalAlignment="Stretch" Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="8,5"/>
+                        HorizontalAlignment="Stretch" Background="#262626" BorderBrush="#383838" CornerRadius="6" Padding="8,5"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="6,0,0,0" Spacing="4">
-              <TextBlock Text="В какой формат:" FontSize="12" FontWeight="SemiBold" Foreground="#475569"/>
+              <TextBlock Text="В какой формат:" FontSize="12" FontWeight="Medium" Foreground="#A1A1AA"/>
               <ComboBox ItemsSource="{Binding AvailableFormats}" SelectedItem="{Binding SelectedFormat}"
-                        HorizontalAlignment="Stretch" Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="8,5"/>
+                        HorizontalAlignment="Stretch" Background="#262626" BorderBrush="#383838" CornerRadius="6" Padding="8,5"/>
             </StackPanel>
           </Grid>
 
           <!-- Action Buttons -->
           <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,6,0,0">
-            <Button Content="💾 Выполнить экспорт" Command="{Binding ExecuteCustomExportCommand}"
-                    Background="#4F46E5" Foreground="White" Padding="16,8" FontWeight="Bold" FontSize="12" CornerRadius="6"/>
+            <Button Content="Экспорт данных" Command="{Binding ExecuteCustomExportCommand}"
+                    Background="#0284C7" Foreground="White" Padding="16,8" FontWeight="Medium" FontSize="12" CornerRadius="6"/>
             <Button Content="Быстрый PDF" Command="{Binding ExportToPdfDirectCommand}"
-                    Background="#EEF2FF" Foreground="#4F46E5" BorderBrush="#C7D2FE" BorderThickness="1"
-                    Padding="12,8" FontWeight="SemiBold" FontSize="12" CornerRadius="6"/>
+                    Background="#262626" Foreground="#38BDF8" BorderBrush="#0284C7" BorderThickness="1"
+                    Padding="12,8" FontWeight="Medium" FontSize="12" CornerRadius="6"/>
             <Button Content="Быстрый Excel" Command="{Binding ExportToExcelDirectCommand}"
-                    Background="#EEF2FF" Foreground="#4F46E5" BorderBrush="#C7D2FE" BorderThickness="1"
-                    Padding="12,8" FontWeight="SemiBold" FontSize="12" CornerRadius="6"/>
+                    Background="#262626" Foreground="#38BDF8" BorderBrush="#0284C7" BorderThickness="1"
+                    Padding="12,8" FontWeight="Medium" FontSize="12" CornerRadius="6"/>
           </StackPanel>
         </StackPanel>
       </Border>
     </Grid>
 
     <!-- Bottom Section: Operation Logs -->
-    <Border Grid.Row="2" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="16">
+    <Border Grid.Row="2" Background="#1E1E1E" BorderBrush="#2C2C2C" BorderThickness="1" CornerRadius="8" Padding="16">
       <Grid RowDefinitions="Auto,*">
         <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,10">
           <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-            <TextBlock Text="📋 Журнал событий и операций" FontWeight="Bold" FontSize="14" Foreground="#1E293B"/>
-            <TextBlock Text="(лог выполненных операций, ошибок и результатов)" FontSize="11" Foreground="#64748B" VerticalAlignment="Center"/>
+            <TextBlock Text="Журнал событий и операций" FontWeight="Bold" FontSize="14" Foreground="#F4F4F5"/>
+            <TextBlock Text="(лог выполненных операций, ошибок и результатов)" FontSize="11" Foreground="#71717A" VerticalAlignment="Center"/>
           </StackPanel>
 
-          <Button Grid.Column="1" Content="🗑️ Очистить журнал" Command="{Binding ClearLogCommand}"
-                  Background="#F1F5F9" Foreground="#64748B" BorderBrush="#CBD5E1" BorderThickness="1"
-                  Padding="10,4" FontSize="11" FontWeight="SemiBold" CornerRadius="6"/>
+          <Button Grid.Column="1" Content="Очистить журнал" Command="{Binding ClearLogCommand}"
+                  Background="#262626" Foreground="#A1A1AA" BorderBrush="#383838" BorderThickness="1"
+                  Padding="10,4" FontSize="11" FontWeight="Medium" CornerRadius="6"/>
         </Grid>
 
-        <Border Grid.Row="1" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" Padding="4">
+        <Border Grid.Row="1" Background="#141414" BorderBrush="#262626" BorderThickness="1" CornerRadius="6" Padding="4">
           <ListBox ItemsSource="{Binding LogMessages}" Background="Transparent" BorderThickness="0">
             <ListBox.ItemTemplate>
               <DataTemplate>
-                <TextBlock Text="{Binding}" FontFamily="Consolas, Cascadia Code, Courier New" FontSize="12" Foreground="#334155" Margin="4,2"/>
+                <TextBlock Text="{Binding}" FontFamily="Consolas, Cascadia Code, Courier New" FontSize="12" Foreground="#A1A1AA" Margin="4,2"/>
               </DataTemplate>
             </ListBox.ItemTemplate>
           </ListBox>

@@ -9,46 +9,41 @@
         mc:Ignorable="d"
         x:Class="KursMVVM.Views.ContractWindow"
         Title="Карточка договора"
-        Background="#F8FAFC">
+        Background="#181818">
 
-  <Border Margin="20" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="12" Padding="24">
+  <Border Margin="20" Background="#1F1F1F" BorderBrush="#2C2C2C" BorderThickness="1" CornerRadius="8" Padding="24">
     <StackPanel Spacing="12">
-      <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center" Margin="0,0,0,8">
-        <Border Width="30" Height="30" Background="#EEF2FF" CornerRadius="6" VerticalAlignment="Center">
-          <TextBlock Text="📄" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Border>
-        <TextBlock Text="Карточка договора" FontSize="18" FontWeight="Bold" Foreground="#1E293B" VerticalAlignment="Center"/>
-      </StackPanel>
+      <TextBlock Text="Карточка договора" FontSize="16" FontWeight="Bold" Foreground="#F4F4F5" HorizontalAlignment="Center" Margin="0,0,0,8"/>
 
-      <StackPanel Spacing="3">
-        <TextBlock Text="Номер договора:" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+      <StackPanel Spacing="4">
+        <TextBlock Text="Номер договора:" Foreground="#A1A1AA" FontSize="12" FontWeight="Medium"/>
         <TextBox Text="{Binding ContractNumber}"
-                 Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="10,6"/>
+                 Background="#262626" BorderBrush="#383838" CornerRadius="6" Padding="10,6"/>
       </StackPanel>
 
-      <StackPanel Spacing="3">
-        <TextBlock Text="Код ответственного сотрудника:" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+      <StackPanel Spacing="4">
+        <TextBlock Text="Код ответственного сотрудника:" Foreground="#A1A1AA" FontSize="12" FontWeight="Medium"/>
         <TextBox Text="{Binding EmployeeId, Converter={StaticResource StringToIntConverter}}"
-                 Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="10,6"/>
+                 Background="#262626" BorderBrush="#383838" CornerRadius="6" Padding="10,6"/>
       </StackPanel>
 
-      <StackPanel Spacing="3">
-        <TextBlock Text="Наименование организации:" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+      <StackPanel Spacing="4">
+        <TextBlock Text="Наименование организации:" Foreground="#A1A1AA" FontSize="12" FontWeight="Medium"/>
         <TextBox Text="{Binding OrganizationName}"
-                 Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="10,6"/>
+                 Background="#262626" BorderBrush="#383838" CornerRadius="6" Padding="10,6"/>
       </StackPanel>
 
-      <StackPanel Spacing="3">
-        <TextBlock Text="Дата заключения договора:" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+      <StackPanel Spacing="4">
+        <TextBlock Text="Дата заключения договора:" Foreground="#A1A1AA" FontSize="12" FontWeight="Medium"/>
         <DatePicker SelectedDate="{Binding Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay}"
-                    Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" HorizontalAlignment="Stretch"/>
+                    Background="#262626" BorderBrush="#383838" CornerRadius="6" HorizontalAlignment="Stretch"/>
       </StackPanel>
 
       <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12" Margin="0,14,0,0">
-        <Button Content="💾 Сохранить" Click="Save_Click"
-                Background="#10B981" Foreground="White" Padding="22,8" FontWeight="Bold" FontSize="13" CornerRadius="6" BorderThickness="0"/>
+        <Button Content="Сохранить" Click="Save_Click"
+                Background="#0284C7" Foreground="White" Padding="22,8" FontWeight="Medium" FontSize="13" CornerRadius="6" BorderThickness="0"/>
         <Button Content="Отмена" Click="Cancel_Click"
-                Background="#F1F5F9" Foreground="#475569" BorderBrush="#CBD5E1" BorderThickness="1" Padding="20,8" FontWeight="SemiBold" FontSize="13" CornerRadius="6"/>
+                Background="#262626" Foreground="#A1A1AA" BorderBrush="#383838" BorderThickness="1" Padding="20,8" FontWeight="Medium" FontSize="13" CornerRadius="6"/>
       </StackPanel>
     </StackPanel>
   </Border>

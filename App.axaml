@@ -2,36 +2,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converters="using:KursMVVM.Converters"
              x:Class="KursMVVM.App"
-             RequestedThemeVariant="Light">
+             RequestedThemeVariant="Dark">
   <Application.Resources>
     <converters:StringToIntConverter x:Key="StringToIntConverter"/>
     <converters:StringToDecimalConverter x:Key="StringToDecimalConverter"/>
     <converters:StringToDateTimeConverter x:Key="StringToDateTimeConverter"/>
     <converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter"/>
+
+    <FontFamily x:Key="AppFont">Segoe UI, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Arial, sans-serif</FontFamily>
   </Application.Resources>
   <Application.Styles>
     <FluentTheme />
 
-    <!-- Modern Minimalist Global Styles -->
+    <!-- Global Clean Font -->
+    <Style Selector="TextBlock">
+      <Setter Property="FontFamily" Value="{StaticResource AppFont}"/>
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="FontFamily" Value="{StaticResource AppFont}"/>
+    </Style>
+
+    <!-- Dark Minimalist Form Controls -->
     <Style Selector="TextBox">
       <Setter Property="CornerRadius" Value="6"/>
       <Setter Property="BorderThickness" Value="1"/>
-      <Setter Property="BorderBrush" Value="#CBD5E1"/>
-      <Setter Property="Background" Value="#F8FAFC"/>
+      <Setter Property="BorderBrush" Value="#333333"/>
+      <Setter Property="Background" Value="#222222"/>
+      <Setter Property="Foreground" Value="#F4F4F5"/>
+      <Setter Property="FontSize" Value="13"/>
+    </Style>
+    <Style Selector="TextBox:focus">
+      <Setter Property="BorderBrush" Value="#38BDF8"/>
+      <Setter Property="Background" Value="#262626"/>
     </Style>
 
     <Style Selector="ComboBox">
       <Setter Property="CornerRadius" Value="6"/>
       <Setter Property="BorderThickness" Value="1"/>
-      <Setter Property="BorderBrush" Value="#CBD5E1"/>
-      <Setter Property="Background" Value="#F8FAFC"/>
+      <Setter Property="BorderBrush" Value="#333333"/>
+      <Setter Property="Background" Value="#222222"/>
+      <Setter Property="Foreground" Value="#F4F4F5"/>
+      <Setter Property="FontSize" Value="13"/>
+    </Style>
+    <Style Selector="ComboBox:focus">
+      <Setter Property="BorderBrush" Value="#38BDF8"/>
     </Style>
 
     <Style Selector="DatePicker">
       <Setter Property="CornerRadius" Value="6"/>
       <Setter Property="BorderThickness" Value="1"/>
-      <Setter Property="BorderBrush" Value="#CBD5E1"/>
-      <Setter Property="Background" Value="#F8FAFC"/>
+      <Setter Property="BorderBrush" Value="#333333"/>
+      <Setter Property="Background" Value="#222222"/>
+      <Setter Property="Foreground" Value="#F4F4F5"/>
+      <Setter Property="FontSize" Value="13"/>
     </Style>
   </Application.Styles>
 </Application>

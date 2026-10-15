@@ -9,7 +9,7 @@
         Title="{Binding Title}"
         Width="1280" Height="850"
         MinWidth="960" MinHeight="650"
-        Background="#F8FAFC">
+        Background="#141414">
 
   <Window.DataTemplates>
     <local:ViewLocator/>
@@ -18,76 +18,76 @@
   <Window.Styles>
     <Style Selector="Button.NavBtn">
       <Setter Property="Background" Value="Transparent"/>
-      <Setter Property="Foreground" Value="#475569"/>
-      <Setter Property="FontSize" Value="14"/>
-      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Foreground" Value="#9E9E9E"/>
+      <Setter Property="FontSize" Value="13"/>
+      <Setter Property="FontWeight" Value="Medium"/>
       <Setter Property="HorizontalAlignment" Value="Stretch"/>
       <Setter Property="HorizontalContentAlignment" Value="Left"/>
-      <Setter Property="Padding" Value="14,10"/>
-      <Setter Property="Margin" Value="0,3"/>
-      <Setter Property="CornerRadius" Value="8"/>
+      <Setter Property="Padding" Value="14,9"/>
+      <Setter Property="Margin" Value="0,2"/>
+      <Setter Property="CornerRadius" Value="6"/>
       <Setter Property="BorderThickness" Value="0"/>
     </Style>
     <Style Selector="Button.NavBtn:pointerover">
-      <Setter Property="Background" Value="#F1F5F9"/>
-      <Setter Property="Foreground" Value="#1E293B"/>
+      <Setter Property="Background" Value="#2A2A2A"/>
+      <Setter Property="Foreground" Value="#FFFFFF"/>
     </Style>
     <Style Selector="Button.NavBtn:pressed">
-      <Setter Property="Background" Value="#EEF2FF"/>
-      <Setter Property="Foreground" Value="#4F46E5"/>
+      <Setter Property="Background" Value="#222222"/>
+      <Setter Property="Foreground" Value="#38BDF8"/>
     </Style>
   </Window.Styles>
 
   <DockPanel>
     <!-- Left Navigation Sidebar -->
-    <Border DockPanel.Dock="Left" Width="260" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="0,0,1,0">
+    <Border DockPanel.Dock="Left" Width="240" Background="#1E1E1E" BorderBrush="#2C2C2C" BorderThickness="0,0,1,0">
       <Grid RowDefinitions="Auto,*,Auto">
         <!-- Brand Header Card -->
-        <Border Grid.Row="0" Margin="16,20,16,16" Padding="14,12" Background="#F1F5F9" CornerRadius="10" BorderBrush="#E2E8F0" BorderThickness="1">
+        <Border Grid.Row="0" Margin="16,20,16,14" Padding="14,12" Background="#252525" CornerRadius="8" BorderBrush="#2E2E2E" BorderThickness="1">
           <StackPanel Spacing="3">
-            <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-              <Border Width="28" Height="28" Background="#EEF2FF" CornerRadius="6" VerticalAlignment="Center">
-                <TextBlock Text="📦" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+              <Border Width="26" Height="26" Background="#164E63" CornerRadius="6" VerticalAlignment="Center">
+                <TextBlock Text="УП" FontSize="11" FontWeight="Bold" Foreground="#38BDF8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
               </Border>
-              <TextBlock Text="УЧЁТ ПОСТАВОК" FontSize="14" FontWeight="Bold" Foreground="#1E293B" VerticalAlignment="Center"/>
+              <TextBlock Text="Учёт поставок" FontSize="14" FontWeight="Bold" Foreground="#F4F4F5" VerticalAlignment="Center"/>
             </StackPanel>
-            <TextBlock Text="Версия 1.0 • Управление ПО" FontSize="11" Foreground="#64748B" Margin="36,0,0,0"/>
+            <TextBlock Text="Информационная система" FontSize="11" Foreground="#71717A" Margin="36,0,0,0"/>
           </StackPanel>
         </Border>
 
         <!-- Navigation Menu Items -->
-        <ScrollViewer Grid.Row="1" Margin="12,4">
+        <ScrollViewer Grid.Row="1" Margin="10,4">
           <StackPanel Spacing="2">
-            <TextBlock Text="ОСНОВНЫЕ СПРАВОЧНИКИ" FontSize="10" FontWeight="Bold" Foreground="#94A3B8" Margin="12,10,12,6"/>
+            <TextBlock Text="СПРАВОЧНИКИ" FontSize="10" FontWeight="Bold" Foreground="#71717A" Margin="14,8,14,6"/>
 
-            <Button Classes="NavBtn" Content="👤  Сотрудники" Command="{Binding NavigateCommand}" CommandParameter="Employees"/>
-            <Button Classes="NavBtn" Content="📄  Договоры" Command="{Binding NavigateCommand}" CommandParameter="Contracts"/>
-            <Button Classes="NavBtn" Content="📦  Поставки" Command="{Binding NavigateCommand}" CommandParameter="Supplies"/>
-            <Button Classes="NavBtn" Content="🏢  Организации" Command="{Binding NavigateCommand}" CommandParameter="Organizations"/>
+            <Button Classes="NavBtn" Content="Сотрудники" Command="{Binding NavigateCommand}" CommandParameter="Employees"/>
+            <Button Classes="NavBtn" Content="Договоры" Command="{Binding NavigateCommand}" CommandParameter="Contracts"/>
+            <Button Classes="NavBtn" Content="Поставки" Command="{Binding NavigateCommand}" CommandParameter="Supplies"/>
+            <Button Classes="NavBtn" Content="Организации" Command="{Binding NavigateCommand}" CommandParameter="Organizations"/>
 
-            <TextBlock Text="АНАЛИТИКА И ДАННЫЕ" FontSize="10" FontWeight="Bold" Foreground="#94A3B8" Margin="12,18,12,6"/>
+            <TextBlock Text="АНАЛИТИКА" FontSize="10" FontWeight="Bold" Foreground="#71717A" Margin="14,16,14,6"/>
 
-            <Button Classes="NavBtn" Content="📊  Отчёты" Command="{Binding NavigateCommand}" CommandParameter="Reports"/>
-            <Button Classes="NavBtn" Content="📈  Графики" Command="{Binding NavigateCommand}" CommandParameter="Graphs"/>
-            <Button Classes="NavBtn" Content="📤  Импорт / Экспорт" Command="{Binding NavigateCommand}" CommandParameter="ImportExport"/>
+            <Button Classes="NavBtn" Content="Отчёты" Command="{Binding NavigateCommand}" CommandParameter="Reports"/>
+            <Button Classes="NavBtn" Content="Графики" Command="{Binding NavigateCommand}" CommandParameter="Graphs"/>
+            <Button Classes="NavBtn" Content="Импорт и экспорт" Command="{Binding NavigateCommand}" CommandParameter="ImportExport"/>
 
-            <TextBlock Text="ПРОГРАММА" FontSize="10" FontWeight="Bold" Foreground="#94A3B8" Margin="12,18,12,6"/>
-            <Button Classes="NavBtn" Content="ℹ️  О программе" Command="{Binding NavigateCommand}" CommandParameter="About"/>
+            <TextBlock Text="СИСТЕМА" FontSize="10" FontWeight="Bold" Foreground="#71717A" Margin="14,16,14,6"/>
+            <Button Classes="NavBtn" Content="О программе" Command="{Binding NavigateCommand}" CommandParameter="About"/>
           </StackPanel>
         </ScrollViewer>
 
         <!-- Footer status pill -->
-        <Border Grid.Row="2" Margin="16,12,16,16" Padding="12,8" Background="#FAF5FF" CornerRadius="8" BorderBrush="#F3E8FF" BorderThickness="1">
+        <Border Grid.Row="2" Margin="16,12,16,16" Padding="12,8" Background="#242424" CornerRadius="6" BorderBrush="#2E2E2E" BorderThickness="1">
           <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-            <Border Width="8" Height="8" Background="#10B981" CornerRadius="4" VerticalAlignment="Center"/>
-            <TextBlock Text="БД SQLite подключена" FontSize="11" Foreground="#6B21A8" FontWeight="Medium" VerticalAlignment="Center"/>
+            <Border Width="6" Height="6" Background="#10B981" CornerRadius="3" VerticalAlignment="Center"/>
+            <TextBlock Text="База данных подключена" FontSize="11" Foreground="#A1A1AA" FontWeight="Medium" VerticalAlignment="Center"/>
           </StackPanel>
         </Border>
       </Grid>
     </Border>
 
     <!-- Main Content Area -->
-    <Border Background="#F8FAFC" Padding="20">
+    <Border Background="#141414" Padding="20">
       <ContentControl Content="{Binding CurrentPage}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
     </Border>
   </DockPanel>

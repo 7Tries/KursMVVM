@@ -8,33 +8,33 @@
 
   <Grid RowDefinitions="Auto,*">
     <!-- Action Toolbar -->
-    <Border Grid.Row="0" Margin="0,0,0,16" Padding="16,12" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10">
+    <Border Grid.Row="0" Margin="0,0,0,16" Padding="16,12" Background="#1E1E1E" BorderBrush="#2C2C2C" BorderThickness="1" CornerRadius="8">
       <Grid ColumnDefinitions="Auto,*,Auto">
         <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
-          <Button Content="➕ Добавить договор" Command="{Binding AddCommand}"
-                  Background="#10B981" Foreground="White" Padding="14,8" FontWeight="SemiBold" FontSize="13" CornerRadius="6" BorderThickness="0"/>
-          <Button Content="✏️ Редактировать" Command="{Binding EditCommand}"
-                  Background="#3B82F6" Foreground="White" Padding="14,8" FontWeight="SemiBold" FontSize="13" CornerRadius="6" BorderThickness="0"/>
-          <Button Content="🗑️ Удалить" Command="{Binding DeleteCommand}"
-                  Background="#EF4444" Foreground="White" Padding="14,8" FontWeight="SemiBold" FontSize="13" CornerRadius="6" BorderThickness="0"/>
+          <Button Content="Добавить" Command="{Binding AddCommand}"
+                  Background="#0284C7" Foreground="White" Padding="16,8" FontWeight="Medium" FontSize="13" CornerRadius="6" BorderThickness="0"/>
+          <Button Content="Редактировать" Command="{Binding EditCommand}"
+                  Background="#262626" Foreground="#E4E4E7" BorderBrush="#3F3F46" BorderThickness="1" Padding="14,8" FontWeight="Medium" FontSize="13" CornerRadius="6"/>
+          <Button Content="Удалить" Command="{Binding DeleteCommand}"
+                  Background="#2E1418" Foreground="#F87171" BorderBrush="#5C1D24" BorderThickness="1" Padding="14,8" FontWeight="Medium" FontSize="13" CornerRadius="6"/>
         </StackPanel>
 
-        <Border Grid.Column="2" Background="#F1F5F9" Padding="12,6" CornerRadius="6" VerticalAlignment="Center">
-          <TextBlock Text="{Binding Contracts.Count, StringFormat='Всего договоров: {0}'}" FontSize="12" FontWeight="SemiBold" Foreground="#475569"/>
+        <Border Grid.Column="2" Background="#262626" BorderBrush="#333333" BorderThickness="1" Padding="12,6" CornerRadius="6" VerticalAlignment="Center">
+          <TextBlock Text="{Binding Contracts.Count, StringFormat='Всего договоров: {0}'}" FontSize="12" FontWeight="Medium" Foreground="#A1A1AA"/>
         </Border>
       </Grid>
     </Border>
 
     <!-- Data Table Container -->
-    <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="0">
+    <Border Grid.Row="1" Background="#1A1A1A" BorderBrush="#2C2C2C" BorderThickness="1" CornerRadius="8" Padding="0">
       <Grid RowDefinitions="Auto,*">
         <!-- Table Header Row -->
-        <Border Grid.Row="0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="0,0,0,1" Padding="16,10" CornerRadius="10,10,0,0">
+        <Border Grid.Row="0" Background="#222222" BorderBrush="#2C2C2C" BorderThickness="0,0,0,1" Padding="16,10" CornerRadius="8,8,0,0">
           <Grid ColumnDefinitions="140,2*,3*,140">
-            <TextBlock Text="НОМЕР ДОГОВОРА" Grid.Column="0" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
-            <TextBlock Text="ОТВЕТСТВЕННЫЙ СОТРУДНИК" Grid.Column="1" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="10,0"/>
-            <TextBlock Text="НАИМЕНОВАНИЕ ОРГАНИЗАЦИИ" Grid.Column="2" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="10,0"/>
-            <TextBlock Text="ДАТА ЗАКЛЮЧЕНИЯ" Grid.Column="3" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
+            <TextBlock Text="НОМЕР ДОГОВОРА" Grid.Column="0" FontWeight="Bold" FontSize="11" Foreground="#71717A"/>
+            <TextBlock Text="ОТВЕТСТВЕННЫЙ СОТРУДНИК" Grid.Column="1" FontWeight="Bold" FontSize="11" Foreground="#71717A" Margin="10,0"/>
+            <TextBlock Text="НАИМЕНОВАНИЕ ОРГАНИЗАЦИИ" Grid.Column="2" FontWeight="Bold" FontSize="11" Foreground="#71717A" Margin="10,0"/>
+            <TextBlock Text="ДАТА ЗАКЛЮЧЕНИЯ" Grid.Column="3" FontWeight="Bold" FontSize="11" Foreground="#71717A"/>
           </Grid>
         </Border>
 
@@ -47,18 +47,21 @@
               <Setter Property="CornerRadius" Value="6"/>
             </Style>
             <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
-              <Setter Property="Background" Value="#EEF2FF"/>
+              <Setter Property="Background" Value="#27272A"/>
+            </Style>
+            <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+              <Setter Property="Background" Value="#202020"/>
             </Style>
           </ListBox.Styles>
           <ListBox.ItemTemplate>
             <DataTemplate>
               <Grid ColumnDefinitions="140,2*,3*,140">
-                <Border Grid.Column="0" Background="#EEF2FF" Padding="8,3" CornerRadius="4" HorizontalAlignment="Left" VerticalAlignment="Center">
-                  <TextBlock Text="{Binding ContractNumber}" FontWeight="Bold" FontSize="12" Foreground="#4338CA"/>
+                <Border Grid.Column="0" Background="#164E63" BorderBrush="#0284C7" BorderThickness="1" Padding="8,3" CornerRadius="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                  <TextBlock Text="{Binding ContractNumber}" FontWeight="SemiBold" FontSize="12" Foreground="#38BDF8"/>
                 </Border>
-                <TextBlock Text="{Binding Employee.FullName}" Grid.Column="1" VerticalAlignment="Center" FontWeight="Medium" Foreground="#1E293B" Margin="10,0"/>
-                <TextBlock Text="{Binding OrganizationName}" Grid.Column="2" VerticalAlignment="Center" Foreground="#334155" Margin="10,0"/>
-                <TextBlock Text="{Binding Date, StringFormat='{}{0:yyyy-MM-dd}'}" Grid.Column="3" VerticalAlignment="Center" Foreground="#64748B"/>
+                <TextBlock Text="{Binding Employee.FullName}" Grid.Column="1" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#F4F4F5" Margin="10,0"/>
+                <TextBlock Text="{Binding OrganizationName}" Grid.Column="2" VerticalAlignment="Center" Foreground="#D4D4D8" Margin="10,0"/>
+                <TextBlock Text="{Binding Date, StringFormat='{}{0:dd.MM.yyyy}'}" Grid.Column="3" VerticalAlignment="Center" Foreground="#71717A"/>
               </Grid>
             </DataTemplate>
           </ListBox.ItemTemplate>

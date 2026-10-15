@@ -90,7 +90,7 @@ public partial class GraphsPageViewModel : ViewModelBase, IRecipient<DataChanged
             {
                 Name = "Заключено договоров",
                 Values = contractsByEmp.Select(x => x.Count).ToArray(),
-                Fill = new SolidColorPaint(new SKColor(99, 102, 241)), // Tender Indigo
+                Fill = new SolidColorPaint(new SKColor(56, 189, 248)), // Cyan 400
                 Rx = 6,
                 Ry = 6
             }
@@ -101,7 +101,7 @@ public partial class GraphsPageViewModel : ViewModelBase, IRecipient<DataChanged
             new Axis
             {
                 Labels = contractsByEmp.Select(x => x.Name).ToArray(),
-                LabelsPaint = new SolidColorPaint(new SKColor(71, 85, 105))
+                LabelsPaint = new SolidColorPaint(new SKColor(161, 161, 170))
             }
         };
 
@@ -117,13 +117,13 @@ public partial class GraphsPageViewModel : ViewModelBase, IRecipient<DataChanged
 
         var tenderColors = new[]
         {
-            new SKColor(99, 102, 241),  // Tender Indigo
-            new SKColor(16, 185, 129),  // Tender Emerald
-            new SKColor(245, 158, 11),  // Tender Amber
-            new SKColor(236, 72, 153),  // Tender Rose
-            new SKColor(139, 92, 246),  // Tender Violet
-            new SKColor(6, 182, 212),   // Tender Cyan
-            new SKColor(249, 115, 22)   // Tender Coral
+            new SKColor(56, 189, 248),   // Cyan
+            new SKColor(52, 211, 153),   // Emerald
+            new SKColor(251, 191, 36),   // Amber
+            new SKColor(244, 114, 182),  // Pink
+            new SKColor(167, 139, 250),  // Purple
+            new SKColor(96, 165, 250),   // Blue
+            new SKColor(251, 146, 60)    // Orange
         };
 
         int colorIdx = 0;
@@ -140,7 +140,7 @@ public partial class GraphsPageViewModel : ViewModelBase, IRecipient<DataChanged
                 DataLabelsSize = 13,
                 DataLabelsFormatter = point => $"{point.Coordinate.PrimaryValue} шт.",
                 ToolTipLabelFormatter = point => $"{e.Type}: {point.Coordinate.PrimaryValue} шт. ({point.StackedValue!.Share:P1})",
-                InnerRadius = 40, // Изящный Donut-эффект, делающий круг крупным и воздушным
+                InnerRadius = 40,
                 MaxRadialColumnWidth = 70
             };
         }).ToArray();
@@ -156,8 +156,9 @@ public partial class GraphsPageViewModel : ViewModelBase, IRecipient<DataChanged
             new Axis
             {
                 Name = "Период",
+                NamePaint = new SolidColorPaint(new SKColor(212, 212, 216)),
                 Labels = dynamics.Select(x => x.Month).ToArray(),
-                LabelsPaint = new SolidColorPaint(new SKColor(71, 85, 105))
+                LabelsPaint = new SolidColorPaint(new SKColor(161, 161, 170))
             }
         };
 
@@ -166,7 +167,8 @@ public partial class GraphsPageViewModel : ViewModelBase, IRecipient<DataChanged
             new Axis
             {
                 Name = "Количество",
-                LabelsPaint = new SolidColorPaint(new SKColor(71, 85, 105))
+                NamePaint = new SolidColorPaint(new SKColor(212, 212, 216)),
+                LabelsPaint = new SolidColorPaint(new SKColor(161, 161, 170))
             }
         };
 
@@ -176,9 +178,9 @@ public partial class GraphsPageViewModel : ViewModelBase, IRecipient<DataChanged
             {
                 Name = "Договоры",
                 Values = dynamics.Select(x => x.Count).ToArray(),
-                Stroke = new SolidColorPaint(new SKColor(16, 185, 129)) { StrokeThickness = 3 }, // Tender Emerald
-                Fill = new SolidColorPaint(new SKColor(16, 185, 129, 40)),
-                GeometryFill = new SolidColorPaint(new SKColor(16, 185, 129)),
+                Stroke = new SolidColorPaint(new SKColor(52, 211, 153)) { StrokeThickness = 3 }, // Emerald 400
+                Fill = new SolidColorPaint(new SKColor(52, 211, 153, 40)),
+                GeometryFill = new SolidColorPaint(new SKColor(52, 211, 153)),
                 GeometryStroke = new SolidColorPaint(SKColors.White) { StrokeThickness = 2 },
                 GeometrySize = 12
             }
@@ -192,7 +194,7 @@ public partial class GraphsPageViewModel : ViewModelBase, IRecipient<DataChanged
             {
                 Name = "Оклады",
                 Values = salaries,
-                Fill = new SolidColorPaint(new SKColor(139, 92, 246)), // Tender Violet
+                Fill = new SolidColorPaint(new SKColor(167, 139, 250)), // Purple 400
                 Rx = 6,
                 Ry = 6
             }

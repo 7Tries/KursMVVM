@@ -8,36 +8,36 @@
 
   <Grid RowDefinitions="Auto,*">
     <!-- Action Toolbar -->
-    <Border Grid.Row="0" Margin="0,0,0,16" Padding="16,12" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10">
+    <Border Grid.Row="0" Margin="0,0,0,16" Padding="16,12" Background="#1E1E1E" BorderBrush="#2C2C2C" BorderThickness="1" CornerRadius="8">
       <Grid ColumnDefinitions="Auto,*,Auto">
         <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
-          <Button Content="➕ Добавить сотрудника" Command="{Binding AddCommand}"
-                  Background="#10B981" Foreground="White" Padding="14,8" FontWeight="SemiBold" FontSize="13" CornerRadius="6" BorderThickness="0"/>
-          <Button Content="✏️ Редактировать" Command="{Binding EditCommand}"
-                  Background="#3B82F6" Foreground="White" Padding="14,8" FontWeight="SemiBold" FontSize="13" CornerRadius="6" BorderThickness="0"/>
-          <Button Content="🗑️ Удалить" Command="{Binding DeleteCommand}"
-                  Background="#EF4444" Foreground="White" Padding="14,8" FontWeight="SemiBold" FontSize="13" CornerRadius="6" BorderThickness="0"/>
+          <Button Content="Добавить" Command="{Binding AddCommand}"
+                  Background="#0284C7" Foreground="White" Padding="16,8" FontWeight="Medium" FontSize="13" CornerRadius="6" BorderThickness="0"/>
+          <Button Content="Редактировать" Command="{Binding EditCommand}"
+                  Background="#262626" Foreground="#E4E4E7" BorderBrush="#3F3F46" BorderThickness="1" Padding="14,8" FontWeight="Medium" FontSize="13" CornerRadius="6"/>
+          <Button Content="Удалить" Command="{Binding DeleteCommand}"
+                  Background="#2E1418" Foreground="#F87171" BorderBrush="#5C1D24" BorderThickness="1" Padding="14,8" FontWeight="Medium" FontSize="13" CornerRadius="6"/>
         </StackPanel>
 
-        <Border Grid.Column="2" Background="#F1F5F9" Padding="12,6" CornerRadius="6" VerticalAlignment="Center">
-          <TextBlock Text="{Binding Employees.Count, StringFormat='Всего сотрудников: {0}'}" FontSize="12" FontWeight="SemiBold" Foreground="#475569"/>
+        <Border Grid.Column="2" Background="#262626" BorderBrush="#333333" BorderThickness="1" Padding="12,6" CornerRadius="6" VerticalAlignment="Center">
+          <TextBlock Text="{Binding Employees.Count, StringFormat='Всего записей: {0}'}" FontSize="12" FontWeight="Medium" Foreground="#A1A1AA"/>
         </Border>
       </Grid>
     </Border>
 
     <!-- Data Table Container -->
-    <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="0">
+    <Border Grid.Row="1" Background="#1A1A1A" BorderBrush="#2C2C2C" BorderThickness="1" CornerRadius="8" Padding="0">
       <Grid RowDefinitions="Auto,*">
         <!-- Table Header Row -->
-        <Border Grid.Row="0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="0,0,0,1" Padding="16,10" CornerRadius="10,10,0,0">
-          <Grid ColumnDefinitions="60,90,2*,2*,120,120,100">
-            <TextBlock Text="КОД" Grid.Column="0" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
-            <TextBlock Text="ОТДЕЛ" Grid.Column="1" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
-            <TextBlock Text="Ф.И.О. СОТРУДНИКА" Grid.Column="2" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
-            <TextBlock Text="ДОЛЖНОСТЬ" Grid.Column="3" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
-            <TextBlock Text="ОКЛАД (РУБ.)" Grid.Column="4" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
-            <TextBlock Text="ПРЕМИЯ (РУБ.)" Grid.Column="5" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
-            <TextBlock Text="МЕСЯЦ" Grid.Column="6" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
+        <Border Grid.Row="0" Background="#222222" BorderBrush="#2C2C2C" BorderThickness="0,0,0,1" Padding="16,10" CornerRadius="8,8,0,0">
+          <Grid ColumnDefinitions="60,100,2*,2*,120,120,100">
+            <TextBlock Text="КОД" Grid.Column="0" FontWeight="Bold" FontSize="11" Foreground="#71717A"/>
+            <TextBlock Text="ОТДЕЛ" Grid.Column="1" FontWeight="Bold" FontSize="11" Foreground="#71717A"/>
+            <TextBlock Text="ФИО СОТРУДНИКА" Grid.Column="2" FontWeight="Bold" FontSize="11" Foreground="#71717A"/>
+            <TextBlock Text="ДОЛЖНОСТЬ" Grid.Column="3" FontWeight="Bold" FontSize="11" Foreground="#71717A"/>
+            <TextBlock Text="ОКЛАД" Grid.Column="4" FontWeight="Bold" FontSize="11" Foreground="#71717A"/>
+            <TextBlock Text="ПРЕМИЯ" Grid.Column="5" FontWeight="Bold" FontSize="11" Foreground="#71717A"/>
+            <TextBlock Text="МЕСЯЦ" Grid.Column="6" FontWeight="Bold" FontSize="11" Foreground="#71717A"/>
           </Grid>
         </Border>
 
@@ -50,21 +50,24 @@
               <Setter Property="CornerRadius" Value="6"/>
             </Style>
             <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
-              <Setter Property="Background" Value="#EEF2FF"/>
+              <Setter Property="Background" Value="#27272A"/>
+            </Style>
+            <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+              <Setter Property="Background" Value="#202020"/>
             </Style>
           </ListBox.Styles>
           <ListBox.ItemTemplate>
             <DataTemplate>
-              <Grid ColumnDefinitions="60,90,2*,2*,120,120,100">
-                <TextBlock Text="{Binding Id}" Grid.Column="0" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#64748B"/>
-                <Border Grid.Column="1" Background="#F1F5F9" Padding="6,2" CornerRadius="4" HorizontalAlignment="Left" VerticalAlignment="Center">
-                  <TextBlock Text="{Binding DepartmentCode}" FontSize="12" FontWeight="SemiBold" Foreground="#334155"/>
+              <Grid ColumnDefinitions="60,100,2*,2*,120,120,100">
+                <TextBlock Text="{Binding Id}" Grid.Column="0" VerticalAlignment="Center" FontWeight="Medium" Foreground="#71717A"/>
+                <Border Grid.Column="1" Background="#262626" Padding="6,2" CornerRadius="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                  <TextBlock Text="{Binding DepartmentCode, StringFormat='Отдел {0}'}" FontSize="11" Foreground="#A1A1AA" FontWeight="Medium"/>
                 </Border>
-                <TextBlock Text="{Binding FullName}" Grid.Column="2" VerticalAlignment="Center" FontWeight="Medium" Foreground="#1E293B"/>
-                <TextBlock Text="{Binding Position}" Grid.Column="3" VerticalAlignment="Center" Foreground="#475569"/>
-                <TextBlock Text="{Binding Salary, StringFormat='{}{0:N2}'}" Grid.Column="4" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#0F172A"/>
-                <TextBlock Text="{Binding Bonus, StringFormat='{}{0:N2}'}" Grid.Column="5" VerticalAlignment="Center" Foreground="#059669" FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding Month}" Grid.Column="6" VerticalAlignment="Center" Foreground="#64748B"/>
+                <TextBlock Text="{Binding FullName}" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#F4F4F5"/>
+                <TextBlock Text="{Binding Position}" Grid.Column="3" VerticalAlignment="Center" Foreground="#D4D4D8"/>
+                <TextBlock Text="{Binding Salary, StringFormat='{}{0:N0} ₽'}" Grid.Column="4" VerticalAlignment="Center" FontWeight="Medium" Foreground="#34D399"/>
+                <TextBlock Text="{Binding Bonus, StringFormat='{}{0:N0} ₽'}" Grid.Column="5" VerticalAlignment="Center" FontWeight="Medium" Foreground="#38BDF8"/>
+                <TextBlock Text="{Binding Month}" Grid.Column="6" VerticalAlignment="Center" Foreground="#71717A"/>
               </Grid>
             </DataTemplate>
           </ListBox.ItemTemplate>

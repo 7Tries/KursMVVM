@@ -6,46 +6,46 @@
              mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
              x:Class="KursMVVM.Views.AboutPageView">
 
-  <Border Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="16" Margin="40" Padding="40"
-          HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="620">
+  <Border Background="#1E1E1E" BorderBrush="#2C2C2C" BorderThickness="1" CornerRadius="12" Margin="40" Padding="36"
+          HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="600">
     <StackPanel Spacing="16" HorizontalAlignment="Center">
-      <Border Width="64" Height="64" Background="#EEF2FF" CornerRadius="16" HorizontalAlignment="Center">
-        <TextBlock Text="📦" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      <Border Width="56" Height="56" Background="#164E63" CornerRadius="12" HorizontalAlignment="Center">
+        <TextBlock Text="УП" FontSize="20" FontWeight="Bold" Foreground="#38BDF8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
       </Border>
 
-      <TextBlock Text="{Binding AppName}" FontSize="24" FontWeight="Bold" Foreground="#1E293B" HorizontalAlignment="Center"/>
+      <TextBlock Text="{Binding AppName}" FontSize="22" FontWeight="Bold" Foreground="#F4F4F5" HorizontalAlignment="Center"/>
 
-      <Border Background="#F1F5F9" Padding="12,4" CornerRadius="12" HorizontalAlignment="Center">
-        <TextBlock Text="{Binding Version, StringFormat='Версия {0} (Релиз)'}" FontSize="12" FontWeight="SemiBold" Foreground="#475569"/>
+      <Border Background="#262626" BorderBrush="#333333" BorderThickness="1" Padding="12,4" CornerRadius="12" HorizontalAlignment="Center">
+        <TextBlock Text="{Binding Version, StringFormat='Версия {0}'}" FontSize="12" FontWeight="Medium" Foreground="#A1A1AA"/>
       </Border>
 
-      <Border Height="1" Background="#E2E8F0" Margin="20,8"/>
+      <Border Height="1" Background="#2C2C2C" Margin="20,4"/>
 
-      <TextBlock Text="{Binding Description}" FontSize="14" Foreground="#475569" TextWrapping="Wrap"
+      <TextBlock Text="{Binding Description}" FontSize="14" Foreground="#A1A1AA" TextWrapping="Wrap"
                  TextAlignment="Center" LineHeight="22"/>
 
       <Grid ColumnDefinitions="*,*,*" Margin="0,12,0,0">
-        <Border Grid.Column="0" Margin="4" Padding="10" Background="#F8FAFC" CornerRadius="8" BorderBrush="#E2E8F0" BorderThickness="1">
-          <StackPanel HorizontalAlignment="Center" Spacing="2">
-            <TextBlock Text="🖥️ Стек" FontSize="11" Foreground="#64748B" HorizontalAlignment="Center"/>
-            <TextBlock Text="Avalonia 11" FontSize="12" FontWeight="Bold" Foreground="#1E293B" HorizontalAlignment="Center"/>
+        <Border Grid.Column="0" Margin="4" Padding="12,10" Background="#252525" CornerRadius="6" BorderBrush="#2E2E2E" BorderThickness="1">
+          <StackPanel HorizontalAlignment="Center" Spacing="3">
+            <TextBlock Text="Интерфейс" FontSize="11" Foreground="#71717A" HorizontalAlignment="Center"/>
+            <TextBlock Text="Avalonia 11" FontSize="12" FontWeight="SemiBold" Foreground="#F4F4F5" HorizontalAlignment="Center"/>
           </StackPanel>
         </Border>
-        <Border Grid.Column="1" Margin="4" Padding="10" Background="#F8FAFC" CornerRadius="8" BorderBrush="#E2E8F0" BorderThickness="1">
-          <StackPanel HorizontalAlignment="Center" Spacing="2">
-            <TextBlock Text="💾 СУБД" FontSize="11" Foreground="#64748B" HorizontalAlignment="Center"/>
-            <TextBlock Text="SQLite (EF Core)" FontSize="12" FontWeight="Bold" Foreground="#1E293B" HorizontalAlignment="Center"/>
+        <Border Grid.Column="1" Margin="4" Padding="12,10" Background="#252525" CornerRadius="6" BorderBrush="#2E2E2E" BorderThickness="1">
+          <StackPanel HorizontalAlignment="Center" Spacing="3">
+            <TextBlock Text="База данных" FontSize="11" Foreground="#71717A" HorizontalAlignment="Center"/>
+            <TextBlock Text="SQLite (EF Core)" FontSize="12" FontWeight="SemiBold" Foreground="#F4F4F5" HorizontalAlignment="Center"/>
           </StackPanel>
         </Border>
-        <Border Grid.Column="2" Margin="4" Padding="10" Background="#F8FAFC" CornerRadius="8" BorderBrush="#E2E8F0" BorderThickness="1">
-          <StackPanel HorizontalAlignment="Center" Spacing="2">
-            <TextBlock Text="📊 Графика" FontSize="11" Foreground="#64748B" HorizontalAlignment="Center"/>
-            <TextBlock Text="LiveCharts2" FontSize="12" FontWeight="Bold" Foreground="#1E293B" HorizontalAlignment="Center"/>
+        <Border Grid.Column="2" Margin="4" Padding="12,10" Background="#252525" CornerRadius="6" BorderBrush="#2E2E2E" BorderThickness="1">
+          <StackPanel HorizontalAlignment="Center" Spacing="3">
+            <TextBlock Text="Графика" FontSize="11" Foreground="#71717A" HorizontalAlignment="Center"/>
+            <TextBlock Text="LiveCharts2" FontSize="12" FontWeight="SemiBold" Foreground="#F4F4F5" HorizontalAlignment="Center"/>
           </StackPanel>
         </Border>
       </Grid>
 
-      <TextBlock Text="© 2025–2026 Курсовая работа • Все права защищены" FontSize="11" Foreground="#94A3B8" HorizontalAlignment="Center" Margin="0,16,0,0"/>
+      <TextBlock Text="© 2025–2026 Курсовая работа • Все права защищены" FontSize="11" Foreground="#71717A" HorizontalAlignment="Center" Margin="0,12,0,0"/>
     </StackPanel>
   </Border>
 </UserControl>
