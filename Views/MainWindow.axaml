@@ -73,6 +73,11 @@
 
             <TextBlock Text="СИСТЕМА" FontSize="10" FontWeight="Bold" Foreground="#71717A" Margin="14,16,14,6"/>
             <Button Classes="NavBtn" Content="О программе" Command="{Binding NavigateCommand}" CommandParameter="About"/>
+
+            <!-- Banner under all tabs -->
+            <Border Margin="4,20,4,10" CornerRadius="8" ClipToBounds="True" BorderBrush="#2C2C2C" BorderThickness="1" Background="#242424">
+              <Image Source="avares://KursMVVM/Assets/banner.png" Stretch="Uniform" HorizontalAlignment="Stretch"/>
+            </Border>
           </StackPanel>
         </ScrollViewer>
 
