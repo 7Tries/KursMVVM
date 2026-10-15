@@ -11,5 +11,27 @@
   </Application.Resources>
   <Application.Styles>
     <FluentTheme />
+
+    <!-- Modern Minimalist Global Styles -->
+    <Style Selector="TextBox">
+      <Setter Property="CornerRadius" Value="6"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#CBD5E1"/>
+      <Setter Property="Background" Value="#F8FAFC"/>
+    </Style>
+
+    <Style Selector="ComboBox">
+      <Setter Property="CornerRadius" Value="6"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#CBD5E1"/>
+      <Setter Property="Background" Value="#F8FAFC"/>
+    </Style>
+
+    <Style Selector="DatePicker">
+      <Setter Property="CornerRadius" Value="6"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush" Value="#CBD5E1"/>
+      <Setter Property="Background" Value="#F8FAFC"/>
+    </Style>
   </Application.Styles>
 </Application>

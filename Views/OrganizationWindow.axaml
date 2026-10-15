@@ -1,55 +1,74 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:models="using:KursMVVM.Models"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        Width="450" Height="520"
-        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
-             x:Class="KursMVVM.Views.OrganizationWindow"
-        Title="Организация"
-        Background="#FAF0E6">
-  <Border Margin="25" Background="White" BorderBrush="#D2B48C" BorderThickness="1" CornerRadius="10" Padding="25">
-    <StackPanel Spacing="12">
-      <TextBlock Text="🏢 Организация" FontSize="22" FontWeight="Bold" Foreground="#5C4033" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        Width="460" Height="580"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d"
+        x:Class="KursMVVM.Views.OrganizationWindow"
+        Title="Карточка организации"
+        Background="#F8FAFC">
 
-      <StackPanel Spacing="4">
-        <TextBlock Text="Номер договора:" Foreground="#5C4033" FontWeight="SemiBold"/>
-        <TextBox Text="{Binding ContractNumber}" Background="#FFF8F0" BorderBrush="#D2B48C" CornerRadius="4" Padding="8,5"/>
+  <Border Margin="20" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="12" Padding="24">
+    <StackPanel Spacing="10">
+      <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center" Margin="0,0,0,6">
+        <Border Width="30" Height="30" Background="#EEF2FF" CornerRadius="6" VerticalAlignment="Center">
+          <TextBlock Text="🏢" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+        <TextBlock Text="Карточка организации" FontSize="18" FontWeight="Bold" Foreground="#1E293B" VerticalAlignment="Center"/>
       </StackPanel>
 
-      <StackPanel Spacing="4">
-        <TextBlock Text="Код страны:" Foreground="#5C4033" FontWeight="SemiBold"/>
-        <TextBox Text="{Binding CountryCode}" Background="#FFF8F0" BorderBrush="#D2B48C" CornerRadius="4" Padding="8,5"/>
+      <Grid ColumnDefinitions="*,*">
+        <StackPanel Grid.Column="0" Margin="0,0,6,0" Spacing="3">
+          <TextBlock Text="Номер договора:" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+          <TextBox Text="{Binding ContractNumber}"
+                   Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="10,6"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="6,0,0,0" Spacing="3">
+          <TextBlock Text="Код страны (2 буквы):" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+          <TextBox Text="{Binding CountryCode}"
+                   Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="10,6"/>
+        </StackPanel>
+      </Grid>
+
+      <StackPanel Spacing="3">
+        <TextBlock Text="Город:" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+        <TextBox Text="{Binding City}"
+                 Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="10,6"/>
       </StackPanel>
 
-      <StackPanel Spacing="4">
-        <TextBlock Text="Город:" Foreground="#5C4033" FontWeight="SemiBold"/>
-        <TextBox Text="{Binding City}" Background="#FFF8F0" BorderBrush="#D2B48C" CornerRadius="4" Padding="8,5"/>
+      <StackPanel Spacing="3">
+        <TextBlock Text="Фактический адрес:" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+        <TextBox Text="{Binding Address}"
+                 Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="10,6"/>
       </StackPanel>
 
-      <StackPanel Spacing="4">
-        <TextBlock Text="Адрес:" Foreground="#5C4033" FontWeight="SemiBold"/>
-        <TextBox Text="{Binding Address}" Background="#FFF8F0" BorderBrush="#D2B48C" CornerRadius="4" Padding="8,5"/>
+      <StackPanel Spacing="3">
+        <TextBlock Text="Номер телефона:" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+        <TextBox Text="{Binding Phone}"
+                 Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="10,6"/>
       </StackPanel>
 
-      <StackPanel Spacing="4">
-        <TextBlock Text="Телефон:" Foreground="#5C4033" FontWeight="SemiBold"/>
-        <TextBox Text="{Binding Phone}" Background="#FFF8F0" BorderBrush="#D2B48C" CornerRadius="4" Padding="8,5"/>
+      <StackPanel Spacing="3">
+        <TextBlock Text="Электронная почта (E-mail):" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+        <TextBox Text="{Binding Email}"
+                 Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="10,6"/>
       </StackPanel>
 
-      <StackPanel Spacing="4">
-        <TextBlock Text="Email:" Foreground="#5C4033" FontWeight="SemiBold"/>
-        <TextBox Text="{Binding Email}" Background="#FFF8F0" BorderBrush="#D2B48C" CornerRadius="4" Padding="8,5"/>
+      <StackPanel Spacing="3">
+        <TextBlock Text="Веб-сайт (необязательно):" Foreground="#475569" FontSize="12" FontWeight="SemiBold"/>
+        <TextBox Text="{Binding Website}"
+                 Background="#F8FAFC" BorderBrush="#CBD5E1" CornerRadius="6" Padding="10,6"/>
       </StackPanel>
 
-      <StackPanel Spacing="4">
-        <TextBlock Text="Сайт:" Foreground="#5C4033" FontWeight="SemiBold"/>
-        <TextBox Text="{Binding Website}" Background="#FFF8F0" BorderBrush="#D2B48C" CornerRadius="4" Padding="8,5"/>
-      </StackPanel>
-
-      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="15" Margin="0,15,0,0">
-        <Button Content="💾 Сохранить" Click="Save_Click" Background="#8FBC8F" Foreground="White" Padding="20,8" FontWeight="Bold" CornerRadius="6"/>
-        <Button Content="❌ Отмена" Click="Cancel_Click" Background="#CD5C5C" Foreground="White" Padding="20,8" FontWeight="Bold" CornerRadius="6"/>
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12" Margin="0,14,0,0">
+        <Button Content="💾 Сохранить" Click="Save_Click"
+                Background="#10B981" Foreground="White" Padding="22,8" FontWeight="Bold" FontSize="13" CornerRadius="6" BorderThickness="0"/>
+        <Button Content="Отмена" Click="Cancel_Click"
+                Background="#F1F5F9" Foreground="#475569" BorderBrush="#CBD5E1" BorderThickness="1" Padding="20,8" FontWeight="SemiBold" FontSize="13" CornerRadius="6"/>
       </StackPanel>
     </StackPanel>
   </Border>

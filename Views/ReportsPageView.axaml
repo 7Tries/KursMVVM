@@ -3,101 +3,201 @@
              xmlns:vm="using:KursMVVM.ViewModels"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             mc:Ignorable="d" d:DesignWidth="1050" d:DesignHeight="750"
              x:Class="KursMVVM.Views.ReportsPageView">
-	<Grid RowDefinitions="Auto,*">
-		<StackPanel Orientation="Horizontal" Margin="10" >
-			<Button Content="🔄 Обновить" Margin="0,0,12,0" Command="{Binding RefreshCommand}" Background="#8FBC8F" Foreground="White" Padding="12,6" FontWeight="Bold" CornerRadius="5"/>
-		</StackPanel>
 
-		<TabControl Grid.Row="1" Margin="10" SelectedIndex="{Binding SelectedTabIndex}">
-			<TabItem Header="Сотрудники" Background="#E8DCC8">
-				<Border Background="White" BorderBrush="#D2B48C" BorderThickness="1">
-					<ListBox ItemsSource="{Binding EmployeeReports}" Background="White">
-						<ListBox.ItemTemplate>
-							<DataTemplate>
-								<Grid ColumnDefinitions="2*,2*,120,120,100,120">
-									<TextBlock Text="{Binding FullName}" Grid.Column="0" VerticalAlignment="Center"/>
-									<TextBlock Text="{Binding Position}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding Salary}" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding Bonus}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding TotalContracts}" Grid.Column="4" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding TotalAmount}" Grid.Column="5" VerticalAlignment="Center" Margin="5,0"/>
-								</Grid>
-							</DataTemplate>
-						</ListBox.ItemTemplate>
-					</ListBox>
-				</Border>
-			</TabItem>
+  <Grid RowDefinitions="Auto,*">
+    <!-- Top Bar -->
+    <Border Grid.Row="0" Margin="0,0,0,16" Padding="16,14" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10">
+      <Grid ColumnDefinitions="*,Auto">
+        <StackPanel Grid.Column="0">
+          <TextBlock Text="📊 Аналитические отчёты и сводки" FontSize="18" FontWeight="Bold" Foreground="#1E293B"/>
+          <TextBlock Text="Сводная информация по сотрудникам, договорам, поставкам и географии контрагентов" FontSize="12" Foreground="#64748B"/>
+        </StackPanel>
 
-			<TabItem Header="Поставки" Background="#E8DCC8">
-				<Border Background="White" BorderBrush="#D2B48C" BorderThickness="1">
-					<ListBox ItemsSource="{Binding SupplyReports}" Background="White">
-						<ListBox.ItemTemplate>
-							<DataTemplate>
-								<Grid ColumnDefinitions="3*,150,150">
-									<TextBlock Text="{Binding EquipmentType}" Grid.Column="0" VerticalAlignment="Center"/>
-									<TextBlock Text="{Binding ContractCount}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding OrgCount}" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
-								</Grid>
-							</DataTemplate>
-						</ListBox.ItemTemplate>
-					</ListBox>
-				</Border>
-			</TabItem>
+        <Button Grid.Column="1" Content="🔄 Обновить отчёты" Command="{Binding RefreshCommand}"
+                Background="#EEF2FF" Foreground="#4F46E5" BorderBrush="#C7D2FE" BorderThickness="1"
+                Padding="14,8" FontWeight="SemiBold" FontSize="13" CornerRadius="8"/>
+      </Grid>
+    </Border>
 
-			<TabItem Header="Договоры" Background="#E8DCC8">
-				<Border Background="White" BorderBrush="#D2B48C" BorderThickness="1">
-					<ListBox ItemsSource="{Binding ContractReports}" Background="White">
-						<ListBox.ItemTemplate>
-							<DataTemplate>
-								<Grid ColumnDefinitions="100,2*,120,2*,2*,3*">
-									<TextBlock Text="{Binding ContractNumber}" Grid.Column="0" VerticalAlignment="Center"/>
-									<TextBlock Text="{Binding OrganizationName}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding Date, StringFormat={}{0:yyyy-MM-dd}}" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding EmployeeName}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding EquipmentType}" Grid.Column="4" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding Comment}" Grid.Column="5" VerticalAlignment="Center" Margin="5,0"/>
-								</Grid>
-							</DataTemplate>
-						</ListBox.ItemTemplate>
-					</ListBox>
-				</Border>
-			</TabItem>
+    <!-- Reports TabControl Container -->
+    <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="12">
+      <TabControl SelectedIndex="{Binding SelectedTabIndex}">
+        <TabControl.Styles>
+          <Style Selector="TabItem">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#64748B"/>
+            <Setter Property="Padding" Value="14,10"/>
+            <Setter Property="Margin" Value="0,0,4,0"/>
+          </Style>
+          <Style Selector="TabItem:selected">
+            <Setter Property="Foreground" Value="#4F46E5"/>
+          </Style>
+        </TabControl.Styles>
 
-			<TabItem Header="Неактивные" Background="#E8DCC8">
-				<Border Background="White" BorderBrush="#D2B48C" BorderThickness="1">
-					<ListBox ItemsSource="{Binding InactiveEmployees}" Background="White">
-						<ListBox.ItemTemplate>
-							<DataTemplate>
-								<Grid ColumnDefinitions="80,2*,2*,100">
-									<TextBlock Text="{Binding Id}" Grid.Column="0" VerticalAlignment="Center"/>
-									<TextBlock Text="{Binding FullName}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding Position}" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding DepartmentCode}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0"/>
-								</Grid>
-							</DataTemplate>
-						</ListBox.ItemTemplate>
-					</ListBox>
-				</Border>
-			</TabItem>
+        <!-- Report 1: Сотрудники -->
+        <TabItem Header="👤  Сводка по сотрудникам">
+          <Grid RowDefinitions="Auto,*" Margin="0,10,0,0">
+            <!-- Header -->
+            <Border Grid.Row="0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1,1,1,1" Padding="14,8" CornerRadius="6,6,0,0">
+              <Grid ColumnDefinitions="2*,2*,120,120,100,120">
+                <TextBlock Text="Ф.И.О. СОТРУДНИКА" Grid.Column="0" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
+                <TextBlock Text="ДОЛЖНОСТЬ" Grid.Column="1" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+                <TextBlock Text="ОКЛАД" Grid.Column="2" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+                <TextBlock Text="ПРЕМИЯ" Grid.Column="3" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+                <TextBlock Text="ДОГОВОРОВ" Grid.Column="4" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+                <TextBlock Text="ИТОГО НАЧИСЛЕНО" Grid.Column="5" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+              </Grid>
+            </Border>
+            <!-- Data List -->
+            <Border Grid.Row="1" BorderBrush="#E2E8F0" BorderThickness="1,0,1,1" CornerRadius="0,0,6,6">
+              <ListBox ItemsSource="{Binding EmployeeReports}" Background="Transparent">
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <Grid ColumnDefinitions="2*,2*,120,120,100,120" Margin="4,2">
+                      <TextBlock Text="{Binding FullName}" Grid.Column="0" VerticalAlignment="Center" FontWeight="Medium" Foreground="#1E293B"/>
+                      <TextBlock Text="{Binding Position}" Grid.Column="1" VerticalAlignment="Center" Foreground="#475569" Margin="6,0"/>
+                      <TextBlock Text="{Binding Salary, StringFormat='{}{0:N2}'}" Grid.Column="2" VerticalAlignment="Center" Foreground="#334155" Margin="6,0"/>
+                      <TextBlock Text="{Binding Bonus, StringFormat='{}{0:N2}'}" Grid.Column="3" VerticalAlignment="Center" Foreground="#059669" FontWeight="SemiBold" Margin="6,0"/>
+                      <Border Grid.Column="4" Background="#EEF2FF" Padding="8,2" CornerRadius="4" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,0">
+                        <TextBlock Text="{Binding TotalContracts}" FontWeight="Bold" FontSize="12" Foreground="#4338CA"/>
+                      </Border>
+                      <TextBlock Text="{Binding TotalAmount, StringFormat='{}{0:N2}'}" Grid.Column="5" VerticalAlignment="Center" FontWeight="Bold" Foreground="#0F172A" Margin="6,0"/>
+                    </Grid>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Border>
+          </Grid>
+        </TabItem>
 
-			<TabItem Header="География" Background="#E8DCC8">
-				<Border Background="White" BorderBrush="#D2B48C" BorderThickness="1">
-					<ListBox ItemsSource="{Binding GeoReports}" Background="White">
-						<ListBox.ItemTemplate>
-							<DataTemplate>
-								<Grid ColumnDefinitions="100,2*,120,120">
-									<TextBlock Text="{Binding Country}" Grid.Column="0" VerticalAlignment="Center"/>
-									<TextBlock Text="{Binding City}" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding ContractCount}" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
-									<TextBlock Text="{Binding OrgCount}" Grid.Column="3" VerticalAlignment="Center" Margin="5,0"/>
-								</Grid>
-							</DataTemplate>
-						</ListBox.ItemTemplate>
-					</ListBox>
-				</Border>
-			</TabItem>
-		</TabControl>
-	</Grid>
+        <!-- Report 2: Поставки -->
+        <TabItem Header="📦  Сводка по поставкам">
+          <Grid RowDefinitions="Auto,*" Margin="0,10,0,0">
+            <Border Grid.Row="0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1,1,1,1" Padding="14,8" CornerRadius="6,6,0,0">
+              <Grid ColumnDefinitions="3*,180,180">
+                <TextBlock Text="ТИП ОБОРУДОВАНИЯ" Grid.Column="0" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
+                <TextBlock Text="КОЛИЧЕСТВО ДОГОВОРОВ" Grid.Column="1" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="8,0"/>
+                <TextBlock Text="КОЛИЧЕСТВО ОРГАНИЗАЦИЙ" Grid.Column="2" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="8,0"/>
+              </Grid>
+            </Border>
+            <Border Grid.Row="1" BorderBrush="#E2E8F0" BorderThickness="1,0,1,1" CornerRadius="0,0,6,6">
+              <ListBox ItemsSource="{Binding SupplyReports}" Background="Transparent">
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <Grid ColumnDefinitions="3*,180,180" Margin="4,2">
+                      <Border Grid.Column="0" Background="#F0FDF4" Padding="8,3" CornerRadius="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding EquipmentType}" FontWeight="SemiBold" FontSize="12" Foreground="#15803D"/>
+                      </Border>
+                      <TextBlock Text="{Binding ContractCount}" Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" Foreground="#1E293B" Margin="8,0"/>
+                      <TextBlock Text="{Binding OrgCount}" Grid.Column="2" VerticalAlignment="Center" FontWeight="Medium" Foreground="#475569" Margin="8,0"/>
+                    </Grid>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Border>
+          </Grid>
+        </TabItem>
+
+        <!-- Report 3: Договоры -->
+        <TabItem Header="📄  Сводка по договорам">
+          <Grid RowDefinitions="Auto,*" Margin="0,10,0,0">
+            <Border Grid.Row="0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1,1,1,1" Padding="14,8" CornerRadius="6,6,0,0">
+              <Grid ColumnDefinitions="110,2*,120,2*,2*,3*">
+                <TextBlock Text="ДОГОВОР" Grid.Column="0" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
+                <TextBlock Text="ОРГАНИЗАЦИЯ" Grid.Column="1" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+                <TextBlock Text="ДАТА" Grid.Column="2" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+                <TextBlock Text="СОТРУДНИК" Grid.Column="3" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+                <TextBlock Text="ОБОРУДОВАНИЕ" Grid.Column="4" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+                <TextBlock Text="КОММЕНТАРИЙ" Grid.Column="5" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+              </Grid>
+            </Border>
+            <Border Grid.Row="1" BorderBrush="#E2E8F0" BorderThickness="1,0,1,1" CornerRadius="0,0,6,6">
+              <ListBox ItemsSource="{Binding ContractReports}" Background="Transparent">
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <Grid ColumnDefinitions="110,2*,120,2*,2*,3*" Margin="4,2">
+                      <Border Grid.Column="0" Background="#EEF2FF" Padding="6,2" CornerRadius="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding ContractNumber}" FontWeight="Bold" FontSize="12" Foreground="#4338CA"/>
+                      </Border>
+                      <TextBlock Text="{Binding OrganizationName}" Grid.Column="1" VerticalAlignment="Center" FontWeight="Medium" Foreground="#1E293B" Margin="6,0"/>
+                      <TextBlock Text="{Binding Date, StringFormat={}{0:yyyy-MM-dd}}" Grid.Column="2" VerticalAlignment="Center" Foreground="#64748B" Margin="6,0"/>
+                      <TextBlock Text="{Binding EmployeeName}" Grid.Column="3" VerticalAlignment="Center" Foreground="#334155" Margin="6,0"/>
+                      <TextBlock Text="{Binding EquipmentType}" Grid.Column="4" VerticalAlignment="Center" Foreground="#047857" FontWeight="Medium" Margin="6,0"/>
+                      <TextBlock Text="{Binding Comment}" Grid.Column="5" VerticalAlignment="Center" Foreground="#64748B" Margin="6,0"/>
+                    </Grid>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Border>
+          </Grid>
+        </TabItem>
+
+        <!-- Report 4: Неактивные -->
+        <TabItem Header="⏳  Неактивные сотрудники">
+          <Grid RowDefinitions="Auto,*" Margin="0,10,0,0">
+            <Border Grid.Row="0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1,1,1,1" Padding="14,8" CornerRadius="6,6,0,0">
+              <Grid ColumnDefinitions="80,2*,2*,120,140">
+                <TextBlock Text="КОД" Grid.Column="0" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
+                <TextBlock Text="Ф.И.О. СОТРУДНИКА" Grid.Column="1" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+                <TextBlock Text="ДОЛЖНОСТЬ" Grid.Column="2" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+                <TextBlock Text="ОТДЕЛ" Grid.Column="3" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+                <TextBlock Text="СТАТУС" Grid.Column="4" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="6,0"/>
+              </Grid>
+            </Border>
+            <Border Grid.Row="1" BorderBrush="#E2E8F0" BorderThickness="1,0,1,1" CornerRadius="0,0,6,6">
+              <ListBox ItemsSource="{Binding InactiveEmployees}" Background="Transparent">
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <Grid ColumnDefinitions="80,2*,2*,120,140" Margin="4,2">
+                      <TextBlock Text="{Binding Id}" Grid.Column="0" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#64748B"/>
+                      <TextBlock Text="{Binding FullName}" Grid.Column="1" VerticalAlignment="Center" FontWeight="Medium" Foreground="#1E293B" Margin="6,0"/>
+                      <TextBlock Text="{Binding Position}" Grid.Column="2" VerticalAlignment="Center" Foreground="#475569" Margin="6,0"/>
+                      <TextBlock Text="{Binding DepartmentCode}" Grid.Column="3" VerticalAlignment="Center" Foreground="#64748B" Margin="6,0"/>
+                      <Border Grid.Column="4" Background="#FEF2F2" Padding="8,2" CornerRadius="4" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,0">
+                        <TextBlock Text="Нет договоров" FontSize="11" FontWeight="Bold" Foreground="#DC2626"/>
+                      </Border>
+                    </Grid>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Border>
+          </Grid>
+        </TabItem>
+
+        <!-- Report 5: География -->
+        <TabItem Header="🌍  География поставок">
+          <Grid RowDefinitions="Auto,*" Margin="0,10,0,0">
+            <Border Grid.Row="0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1,1,1,1" Padding="14,8" CornerRadius="6,6,0,0">
+              <Grid ColumnDefinitions="100,2*,160,160">
+                <TextBlock Text="СТРАНА" Grid.Column="0" FontWeight="Bold" FontSize="11" Foreground="#64748B"/>
+                <TextBlock Text="ГОРОД" Grid.Column="1" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="8,0"/>
+                <TextBlock Text="ДОГОВОРОВ" Grid.Column="2" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="8,0"/>
+                <TextBlock Text="ОРГАНИЗАЦИЙ" Grid.Column="3" FontWeight="Bold" FontSize="11" Foreground="#64748B" Margin="8,0"/>
+              </Grid>
+            </Border>
+            <Border Grid.Row="1" BorderBrush="#E2E8F0" BorderThickness="1,0,1,1" CornerRadius="0,0,6,6">
+              <ListBox ItemsSource="{Binding GeoReports}" Background="Transparent">
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <Grid ColumnDefinitions="100,2*,160,160" Margin="4,2">
+                      <Border Grid.Column="0" Background="#FEF3C7" Padding="6,2" CornerRadius="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Country}" FontWeight="Bold" FontSize="11" Foreground="#92400E"/>
+                      </Border>
+                      <TextBlock Text="{Binding City}" Grid.Column="1" VerticalAlignment="Center" FontWeight="Medium" Foreground="#1E293B" Margin="8,0"/>
+                      <TextBlock Text="{Binding ContractCount}" Grid.Column="2" VerticalAlignment="Center" FontWeight="Bold" Foreground="#4F46E5" Margin="8,0"/>
+                      <TextBlock Text="{Binding OrgCount}" Grid.Column="3" VerticalAlignment="Center" FontWeight="Medium" Foreground="#475569" Margin="8,0"/>
+                    </Grid>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Border>
+          </Grid>
+        </TabItem>
+
+      </TabControl>
+    </Border>
+  </Grid>
 </UserControl>

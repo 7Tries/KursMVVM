@@ -4,35 +4,156 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="using:KursMVVM.ViewModels"
              xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
-             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="780"
              x:Class="KursMVVM.Views.GraphsPageView">
-  <Grid RowDefinitions="*,*" ColumnDefinitions="*,*" Margin="10">
-    <Border Grid.Row="0" Grid.Column="0" Margin="6" Background="White" BorderBrush="#D2B48C" BorderThickness="1" CornerRadius="8" Padding="10">
-      <Grid RowDefinitions="Auto,*">
-        <TextBlock Text="Договоры по сотрудникам" FontWeight="Bold" Foreground="#5C4033" Margin="0,0,0,8" HorizontalAlignment="Center"/>
-        <lvc:CartesianChart Grid.Row="1" Series="{Binding ContractsByEmployeeSeries}" XAxes="{Binding ContractsByEmployeeXAxes}" Background="White"/>
+
+  <Grid RowDefinitions="Auto,*">
+    <!-- Top Bar with Info and Refresh Button -->
+    <Border Grid.Row="0" Margin="0,0,0,16" Padding="16,14" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10">
+      <Grid ColumnDefinitions="*,Auto">
+        <StackPanel Grid.Column="0">
+          <TextBlock Text="📈 Визуализация данных и интерактивные графики" FontSize="18" FontWeight="Bold" Foreground="#1E293B"/>
+          <TextBlock Text="Переключайтесь между сводной сеткой 2х2 и полноэкранным детальным просмотром любого графика" FontSize="12" Foreground="#64748B"/>
+        </StackPanel>
+
+        <Button Grid.Column="1" Content="🔄 Обновить графики" Command="{Binding RefreshCommand}"
+                Background="#EEF2FF" Foreground="#4F46E5" BorderBrush="#C7D2FE" BorderThickness="1"
+                Padding="14,8" FontWeight="SemiBold" FontSize="13" CornerRadius="8"/>
       </Grid>
     </Border>
 
-    <Border Grid.Row="0" Grid.Column="1" Margin="6" Background="White" BorderBrush="#D2B48C" BorderThickness="1" CornerRadius="8" Padding="10">
-      <Grid RowDefinitions="Auto,*">
-        <TextBlock Text="Доля поставок по типам" FontWeight="Bold" Foreground="#5C4033" Margin="0,0,0,8" HorizontalAlignment="Center"/>
-        <lvc:PieChart Grid.Row="1" Series="{Binding EquipmentTypeSeries}" Background="White"/>
-      </Grid>
-    </Border>
+    <!-- Tabbed Chart Presentation Container -->
+    <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="14">
+      <TabControl SelectedIndex="{Binding SelectedViewModeIndex}">
+        <TabControl.Styles>
+          <Style Selector="TabItem">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#64748B"/>
+            <Setter Property="Padding" Value="14,10"/>
+            <Setter Property="Margin" Value="0,0,4,0"/>
+          </Style>
+          <Style Selector="TabItem:selected">
+            <Setter Property="Foreground" Value="#4F46E5"/>
+          </Style>
+        </TabControl.Styles>
 
-    <Border Grid.Row="1" Grid.Column="0" Margin="6" Background="White" BorderBrush="#D2B48C" BorderThickness="1" CornerRadius="8" Padding="10">
-      <Grid RowDefinitions="Auto,*">
-        <TextBlock Text="Динамика договоров по месяцам" FontWeight="Bold" Foreground="#5C4033" Margin="0,0,0,8" HorizontalAlignment="Center"/>
-        <lvc:CartesianChart Grid.Row="1" Series="{Binding ContractDynamicsSeries}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" Background="White"/>
-      </Grid>
-    </Border>
+        <!-- Tab 0: Все графики (2x2) -->
+        <TabItem Header="📊  Все графики (Сетка 2x2)">
+          <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="0,10,0,0">
+            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,*" Margin="0,0,4,10">
 
-    <Border Grid.Row="1" Grid.Column="1" Margin="6" Background="White" BorderBrush="#D2B48C" BorderThickness="1" CornerRadius="8" Padding="10">
-      <Grid RowDefinitions="Auto,*">
-        <TextBlock Text="Распределение окладов" FontWeight="Bold" Foreground="#5C4033" Margin="0,0,0,8" HorizontalAlignment="Center"/>
-        <lvc:CartesianChart Grid.Row="1" Series="{Binding SalaryDistributionSeries}" Background="White"/>
-      </Grid>
+              <!-- Chart 1: Договоры -->
+              <Border Grid.Row="0" Grid.Column="0" Margin="0,0,8,12" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="16" MinHeight="320">
+                <Grid RowDefinitions="Auto,*">
+                  <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                    <TextBlock Text="Договоры по сотрудникам" FontWeight="Bold" FontSize="14" Foreground="#1E293B"/>
+                    <TextBlock Text="Количество контрактов, заключённых сотрудниками" FontSize="11" Foreground="#64748B"/>
+                  </StackPanel>
+                  <lvc:CartesianChart Grid.Row="1" Series="{Binding ContractsByEmployeeSeries}" XAxes="{Binding ContractsByEmployeeXAxes}" Background="Transparent" MinHeight="240"/>
+                </Grid>
+              </Border>
+
+              <!-- Chart 2: Доля оборудования (Pie Chart) - Optimized size and legend -->
+              <Border Grid.Row="0" Grid.Column="1" Margin="8,0,0,12" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="16" MinHeight="320">
+                <Grid RowDefinitions="Auto,*">
+                  <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="SpaceBetween">
+                      <TextBlock Text="Доля поставок по типам оборудования" FontWeight="Bold" FontSize="14" Foreground="#1E293B"/>
+                      <Border Background="#ECFDF5" Padding="8,2" CornerRadius="6" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding TotalEquipmentCount, StringFormat='Всего: {0} шт.'}" FontSize="11" Foreground="#047857" FontWeight="Bold"/>
+                      </Border>
+                    </StackPanel>
+                    <TextBlock Text="Структура поставленного оборудования" FontSize="11" Foreground="#64748B"/>
+                  </StackPanel>
+                  <lvc:PieChart Grid.Row="1" Series="{Binding EquipmentTypeSeries}" LegendPosition="Right" Background="Transparent" MinHeight="240"/>
+                </Grid>
+              </Border>
+
+              <!-- Chart 3: Динамика -->
+              <Border Grid.Row="1" Grid.Column="0" Margin="0,8,8,0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="16" MinHeight="320">
+                <Grid RowDefinitions="Auto,*">
+                  <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                    <TextBlock Text="Динамика договоров по месяцам" FontWeight="Bold" FontSize="14" Foreground="#1E293B"/>
+                    <TextBlock Text="Помесячная хронология заключения договоров" FontSize="11" Foreground="#64748B"/>
+                  </StackPanel>
+                  <lvc:CartesianChart Grid.Row="1" Series="{Binding ContractDynamicsSeries}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" Background="Transparent" MinHeight="240"/>
+                </Grid>
+              </Border>
+
+              <!-- Chart 4: Оклады -->
+              <Border Grid.Row="1" Grid.Column="1" Margin="8,8,0,0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="16" MinHeight="320">
+                <Grid RowDefinitions="Auto,*">
+                  <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                    <TextBlock Text="Распределение окладов" FontWeight="Bold" FontSize="14" Foreground="#1E293B"/>
+                    <TextBlock Text="Базовый оклад по штату сотрудников (руб.)" FontSize="11" Foreground="#64748B"/>
+                  </StackPanel>
+                  <lvc:CartesianChart Grid.Row="1" Series="{Binding SalaryDistributionSeries}" Background="Transparent" MinHeight="240"/>
+                </Grid>
+              </Border>
+
+            </Grid>
+          </ScrollViewer>
+        </TabItem>
+
+        <!-- Tab 1: Договоры (Full Screen) -->
+        <TabItem Header="👤  Договоры по сотрудникам">
+          <Border Margin="0,10,0,0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="20">
+            <Grid RowDefinitions="Auto,*">
+              <StackPanel Grid.Row="0" Margin="0,0,0,16">
+                <TextBlock Text="Столбчатая диаграмма: Договоры по сотрудникам" FontSize="16" FontWeight="Bold" Foreground="#1E293B"/>
+                <TextBlock Text="Сравнение производительности сотрудников по количеству заключённых договоров" FontSize="12" Foreground="#64748B"/>
+              </StackPanel>
+              <lvc:CartesianChart Grid.Row="1" Series="{Binding ContractsByEmployeeSeries}" XAxes="{Binding ContractsByEmployeeXAxes}" Background="Transparent" MinHeight="450"/>
+            </Grid>
+          </Border>
+        </TabItem>
+
+        <!-- Tab 2: Доля поставок (Pie Chart Full Screen) -->
+        <TabItem Header="🥧  Доля оборудования (Круговая)">
+          <Border Margin="0,10,0,0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="20">
+            <Grid RowDefinitions="Auto,*">
+              <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,16">
+                <StackPanel Grid.Column="0">
+                  <TextBlock Text="Круговая диаграмма: Доля поставок по типам оборудования" FontSize="16" FontWeight="Bold" Foreground="#1E293B"/>
+                  <TextBlock Text="Наглядное процентное соотношение категорий поставленного оборудования" FontSize="12" Foreground="#64748B"/>
+                </StackPanel>
+                <Border Grid.Column="1" Background="#ECFDF5" Padding="14,6" CornerRadius="8" VerticalAlignment="Center">
+                  <TextBlock Text="{Binding TotalEquipmentCount, StringFormat='Общий объём: {0} единиц'}" FontSize="13" Foreground="#047857" FontWeight="Bold"/>
+                </Border>
+              </Grid>
+              <lvc:PieChart Grid.Row="1" Series="{Binding EquipmentTypeSeries}" LegendPosition="Right" Background="Transparent" MinHeight="450"/>
+            </Grid>
+          </Border>
+        </TabItem>
+
+        <!-- Tab 3: Динамика договоров (Full Screen) -->
+        <TabItem Header="📈  Динамика договоров">
+          <Border Margin="0,10,0,0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="20">
+            <Grid RowDefinitions="Auto,*">
+              <StackPanel Grid.Row="0" Margin="0,0,0,16">
+                <TextBlock Text="Линейный график: Динамика заключения договоров" FontSize="16" FontWeight="Bold" Foreground="#1E293B"/>
+                <TextBlock Text="Хронологический тренд подписания контрактов по отчётным месяцам" FontSize="12" Foreground="#64748B"/>
+              </StackPanel>
+              <lvc:CartesianChart Grid.Row="1" Series="{Binding ContractDynamicsSeries}" XAxes="{Binding XAxes}" YAxes="{Binding YAxes}" Background="Transparent" MinHeight="450"/>
+            </Grid>
+          </Border>
+        </TabItem>
+
+        <!-- Tab 4: Распределение окладов (Full Screen) -->
+        <TabItem Header="💰  Распределение окладов">
+          <Border Margin="0,10,0,0" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="20">
+            <Grid RowDefinitions="Auto,*">
+              <StackPanel Grid.Row="0" Margin="0,0,0,16">
+                <TextBlock Text="Гистограмма: Распределение окладов сотрудников" FontSize="16" FontWeight="Bold" Foreground="#1E293B"/>
+                <TextBlock Text="Сопоставление уровней ежемесячной базовой оплаты труда по штату" FontSize="12" Foreground="#64748B"/>
+              </StackPanel>
+              <lvc:CartesianChart Grid.Row="1" Series="{Binding SalaryDistributionSeries}" Background="Transparent" MinHeight="450"/>
+            </Grid>
+          </Border>
+        </TabItem>
+
+      </TabControl>
     </Border>
   </Grid>
 </UserControl>
