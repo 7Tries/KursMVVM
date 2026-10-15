@@ -684,7 +684,7 @@ public class ImportExportService
         var headerPara = new iText.Layout.Element.Paragraph(title)
             .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
             .SetFontSize(18)
-            .SetBold()
+            .SimulateBold()
             .SetFontColor(new iText.Kernel.Colors.DeviceRgb(30, 41, 59))
             .SetMarginBottom(4);
         doc.Add(headerPara);
@@ -844,7 +844,7 @@ public class ImportExportService
 
         var totalPara = new iText.Layout.Element.Paragraph($"Всего записей в документе: {recordCount}")
             .SetFontSize(10)
-            .SetItalic()
+            .SimulateItalic()
             .SetFontColor(new iText.Kernel.Colors.DeviceRgb(100, 116, 139))
             .SetMarginTop(12);
         doc.Add(totalPara);
@@ -1052,7 +1052,11 @@ public class ImportExportService
         foreach (var h in headers)
         {
             var cell = new iText.Layout.Element.Cell()
-                .Add(new iText.Layout.Element.Paragraph(h).SetFont(font).SetBold().SetFontSize(10).SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE))
+                .Add(new iText.Layout.Element.Paragraph(h)
+                    .SetFont(font)
+                    .SimulateBold()
+                    .SetFontSize(10)
+                    .SetFontColor(iText.Kernel.Colors.ColorConstants.WHITE))
                 .SetBackgroundColor(headerBg)
                 .SetPadding(6)
                 .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER);

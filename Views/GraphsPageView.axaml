@@ -58,12 +58,12 @@
               <Border Grid.Row="0" Grid.Column="1" Margin="8,0,0,12" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="10" Padding="16" MinHeight="320">
                 <Grid RowDefinitions="Auto,*">
                   <StackPanel Grid.Row="0" Margin="0,0,0,10">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="SpaceBetween">
-                      <TextBlock Text="Доля поставок по типам оборудования" FontWeight="Bold" FontSize="14" Foreground="#1E293B"/>
-                      <Border Background="#ECFDF5" Padding="8,2" CornerRadius="6" VerticalAlignment="Center">
+                    <Grid ColumnDefinitions="*,Auto">
+                      <TextBlock Grid.Column="0" Text="Доля поставок по типам оборудования" FontWeight="Bold" FontSize="14" Foreground="#1E293B" VerticalAlignment="Center"/>
+                      <Border Grid.Column="1" Background="#ECFDF5" Padding="8,2" CornerRadius="6" VerticalAlignment="Center">
                         <TextBlock Text="{Binding TotalEquipmentCount, StringFormat='Всего: {0} шт.'}" FontSize="11" Foreground="#047857" FontWeight="Bold"/>
                       </Border>
-                    </StackPanel>
+                    </Grid>
                     <TextBlock Text="Структура поставленного оборудования" FontSize="11" Foreground="#64748B"/>
                   </StackPanel>
                   <lvc:PieChart Grid.Row="1" Series="{Binding EquipmentTypeSeries}" LegendPosition="Right" Background="Transparent" MinHeight="240"/>
