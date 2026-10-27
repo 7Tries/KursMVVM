@@ -1,0 +1,219 @@
+### KursMVVM REST API — тестовые запросы
+### Базовый URL (изменить при необходимости)
+@baseUrl = http://localhost:5000
+
+###############################################################################
+# СОТРУДНИКИ (Employees)
+###############################################################################
+
+### Получить список сотрудников (страница 1)
+GET {{baseUrl}}/api/employees?page=1
+Accept: application/json
+
+###
+
+### Получить всех сотрудников
+GET {{baseUrl}}/api/employees/all
+Accept: application/json
+
+###
+
+### Получить сотрудника по ID=1
+GET {{baseUrl}}/api/employees/1
+Accept: application/json
+
+###
+
+### Создать нового сотрудника
+POST {{baseUrl}}/api/employees
+Content-Type: application/json
+
+{
+  "departmentCode": 201,
+  "fullName": "Иванов Иван Иванович",
+  "position": "Менеджер",
+  "salary": 55000.00,
+  "bonus": 5000.00,
+  "month": "2025-10"
+}
+
+###
+
+### Обновить сотрудника с ID=1
+PUT {{baseUrl}}/api/employees/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "departmentCode": 101,
+  "fullName": "Обновлённый ФИО",
+  "position": "Директор",
+  "salary": 90000.00,
+  "bonus": 20000.00,
+  "month": "2025-10"
+}
+
+###
+
+### Удалить сотрудника с ID=999
+DELETE {{baseUrl}}/api/employees/999
+
+###############################################################################
+# ДОГОВОРА (Contracts)
+###############################################################################
+
+### Получить список договоров (страница 1)
+GET {{baseUrl}}/api/contracts?page=1
+Accept: application/json
+
+###
+
+### Получить все договоры
+GET {{baseUrl}}/api/contracts/all
+Accept: application/json
+
+###
+
+### Получить договор по номеру
+GET {{baseUrl}}/api/contracts/Д001
+Accept: application/json
+
+###
+
+### Создать новый договор
+POST {{baseUrl}}/api/contracts
+Content-Type: application/json
+
+{
+  "contractNumber": "Д100",
+  "employeeId": 1,
+  "organizationName": "ООО Тест",
+  "date": "2025-10-01T00:00:00"
+}
+
+###
+
+### Обновить договор
+PUT {{baseUrl}}/api/contracts/Д100
+Content-Type: application/json
+
+{
+  "contractNumber": "Д100",
+  "employeeId": 2,
+  "organizationName": "ООО Тест Обновлённый",
+  "date": "2025-10-15T00:00:00"
+}
+
+###
+
+### Удалить договор
+DELETE {{baseUrl}}/api/contracts/Д100
+
+###############################################################################
+# ПОСТАВКИ (Supplies)
+###############################################################################
+
+### Получить список поставок
+GET {{baseUrl}}/api/supplies?page=1
+Accept: application/json
+
+###
+
+### Получить все поставки
+GET {{baseUrl}}/api/supplies/all
+Accept: application/json
+
+###
+
+### Получить поставку по номеру договора
+GET {{baseUrl}}/api/supplies/Д001
+Accept: application/json
+
+###
+
+### Создать поставку
+POST {{baseUrl}}/api/supplies
+Content-Type: application/json
+
+{
+  "contractNumber": "Д100",
+  "equipmentType": "Сервер",
+  "comment": "Тестовая поставка",
+  "employeeId": 1
+}
+
+###
+
+### Обновить поставку
+PUT {{baseUrl}}/api/supplies/Д100
+Content-Type: application/json
+
+{
+  "contractNumber": "Д100",
+  "equipmentType": "Ноутбук",
+  "comment": "Обновлённый комментарий",
+  "employeeId": 1
+}
+
+###
+
+### Удалить поставку
+DELETE {{baseUrl}}/api/supplies/Д100
+
+###############################################################################
+# ОРГАНИЗАЦИИ (Organizations)
+###############################################################################
+
+### Получить список организаций
+GET {{baseUrl}}/api/organizations?page=1
+Accept: application/json
+
+###
+
+### Получить все организации
+GET {{baseUrl}}/api/organizations/all
+Accept: application/json
+
+###
+
+### Получить организацию по ID
+GET {{baseUrl}}/api/organizations/1
+Accept: application/json
+
+###
+
+### Создать организацию
+POST {{baseUrl}}/api/organizations
+Content-Type: application/json
+
+{
+  "contractNumber": "Д001",
+  "countryCode": "RU",
+  "city": "Москва",
+  "address": "ул. Тестовая, д. 1",
+  "phone": "8-495-000-00-00",
+  "email": "test@example.com",
+  "website": "www.example.com"
+}
+
+###
+
+### Обновить организацию
+PUT {{baseUrl}}/api/organizations/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "contractNumber": "Д001",
+  "countryCode": "RU",
+  "city": "Санкт-Петербург",
+  "address": "ул. Обновлённая, д. 5",
+  "phone": "8-812-000-00-00",
+  "email": "updated@example.com",
+  "website": null
+}
+
+###
+
+### Удалить организацию с ID=999
+DELETE {{baseUrl}}/api/organizations/999
